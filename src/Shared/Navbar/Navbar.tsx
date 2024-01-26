@@ -1,13 +1,57 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-
+import { AuthContext } from "../../Providers/AuthProviders";
+import { Icon } from '@iconify/react';
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    const hangleLogOut = () => {
+        logOut()
+            .then(() => {
+            }).catch((error: string) => { console.error(error) });
+    }
 
     const navoptions =
         <>
             <li><Link to='/'>Home</Link></li>
-            <li><Link to='/login'>Login</Link></li>
-            <li><Link to='/signup'>SignUp</Link></li>
+            <li><Link to='/dashboard/allgadget'>Dashboard</Link></li>
+
+
+            {user?.email ?
+
+                <>
+                    <li><Link to='' onClick={hangleLogOut}>LogOut</Link></li>
+                </>
+                :
+                <>
+                    <li><Link to='/login'>Login</Link></li>
+                    <li><Link to='/signup'>SignUp</Link></li>
+                </>
+            }
+
+            <li>
+                <Link to='/' className="">
+
+                    {user?.photoURL ?
+                        <>
+                            <div className="avatar">
+                                <div className="w-9 h-9 rounded-full">
+                                    <img src={user?.photoURL} />
+                                </div>
+                            </div>
+                        </>
+                        :
+                        <>
+                            {/* <span className="icon-[iconamoon--profile-thin] text-white"></span> */}
+
+                            <Icon className="w-7 h-7 mt-1" icon="iconamoon:profile-fill" />
+                        </> 
+                        } 
+
+                </Link>
+            </li>
+
         </>
     return (
         <div>

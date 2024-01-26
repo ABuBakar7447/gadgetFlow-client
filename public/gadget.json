@@ -1,0 +1,170 @@
+[
+    {
+     "id": 2,
+     "name": "Laptop ABC",
+     "price": 1299.99,
+     "quantity": 30,
+     "releaseDate": "2022-03-15",
+     "brand": "XYZ Technologies",
+     "modelNumber": "LTABC456",
+     "category": "Laptops",
+     "operatingSystem": "Windows",
+     "connectivity": ["Wi-Fi", "USB-C", "HDMI"],
+     "powerSource": "Battery",
+     "features": {
+       "processor": "Intel i7",
+       "RAM": "16 GB",
+       "storageCapacity": "512 GB SSD",
+       "screenSize": "15.6 inches"
+     },
+     "img": "laptop_abc_image.jpg"
+   },
+   {
+     "id": 3,
+     "name": "UltraBook Pro",
+     "price": 1599.99,
+     "quantity": 20,
+     "releaseDate": "2022-02-28",
+     "brand": "TechMaster",
+     "modelNumber": "UBP789",
+     "category": "Laptops",
+     "operatingSystem": "MacOS",
+     "connectivity": ["Bluetooth", "Thunderbolt", "USB-C"],
+     "powerSource": "Battery",
+     "features": {
+       "processor": "Apple M1",
+       "RAM": "8 GB",
+       "storageCapacity": "256 GB SSD",
+       "screenSize": "13.3 inches"
+     },
+     "img": "ultrabook_pro_image.jpg"
+   },
+   {
+     "id": 4,
+     "name": "Gaming Beast",
+     "price": 2499.99,
+     "quantity": 15,
+     "releaseDate": "2022-04-10",
+     "brand": "GameMaster",
+     "modelNumber": "GB123",
+     "category": "Laptops",
+     "operatingSystem": "Windows",
+     "connectivity": ["Wi-Fi", "Ethernet", "USB-A"],
+     "powerSource": "Battery",
+     "features": {
+       "processor": "AMD Ryzen 9",
+       "RAM": "32 GB",
+       "storageCapacity": "1 TB NVMe SSD",
+       "screenSize": "17.3 inches"
+     },
+     "img": "gaming_beast_image.jpg"
+   },
+   {
+     "id": 8,
+     "name": "Mobile Galaxy X",
+     "price": 899.99,
+     "quantity": 40,
+     "releaseDate": "2022-02-05",
+     "brand": "GalaxyTech",
+     "modelNumber": "GX123",
+     "category": "Mobiles",
+     "operatingSystem": "Android",
+     "connectivity": ["Bluetooth", "Wi-Fi", "USB-C"],
+     "powerSource": "Battery",
+     "features": {
+       "cameraResolution": "48 MP",
+       "storageCapacity": "256 GB",
+       "screenSize": "6.2 inches"
+     },
+     "img": "mobile_galaxy_x_image.jpg"
+   },
+   {
+     "id": 9,
+     "name": "iPhone Pro",
+     "price": 1099.99,
+     "quantity": 25,
+     "releaseDate": "2022-03-20",
+     "brand": "Apple",
+     "modelNumber": "IP12Pro",
+     "category": "Mobiles",
+     "operatingSystem": "iOS",
+     "connectivity": ["Bluetooth", "Wi-Fi", "Lightning"],
+     "powerSource": "Battery",
+     "features": {
+       "cameraResolution": "12 MP",
+       "storageCapacity": "512 GB",
+       "screenSize": "6.1 inches"
+     },
+     "img": "iphone_pro_image.jpg"
+   },
+   {
+     "id": 10,
+     "name": "Pixel XL",
+     "price": 799.99,
+     "quantity": 35,
+     "releaseDate": "2022-01-15",
+     "brand": "Google",
+     "modelNumber": "PX123",
+     "category": "Mobiles",
+     "operatingSystem": "Android",
+     "connectivity": ["Bluetooth", "Wi-Fi", "USB-C"],
+     "powerSource": "Battery",
+     "features": {
+       "cameraResolution": "16 MP",
+       "storageCapacity": "128 GB",
+       "screenSize": "6.4 inches"
+     },
+     "img": "pixel_xl_image.jpg"
+   },
+   {
+     "id": 14,
+     "name": "Professional DSLR",
+     "price": 1499.99,
+     "quantity": 15,
+     "releaseDate": "2022-05-05",
+     "brand": "PhotoMaster",
+     "modelNumber": "PDSLR123",
+     "category": "Cameras",
+     "features": {
+       "resolution": "30 MP",
+       "sensorType": "Full Frame",
+       "videoRecording": "4K",
+       "imageStabilization": true
+     },
+     "img": "professional_dslr_image.jpg"
+   },
+   {
+     "id": 15,
+     "name": "Mirrorless Pro",
+     "price": 1899.99,
+     "quantity": 12,
+     "releaseDate": "2022-06-10",
+     "brand": "Captura",
+     "modelNumber": "MPRO456",
+     "category": "Cameras",
+     "features": {
+       "resolution": "40 MP",
+       "sensorType": "Medium Format",
+       "videoRecording": "8K",
+       "imageStabilization": true
+     },
+     "img": "mirrorless_pro_image.jpg"
+   },
+   {
+     "id": 16,
+     "name": "Compact Travel Cam",
+     "price": 699.99,
+     "quantity": 20,
+     "releaseDate": "2022-03-01",
+     "brand": "Voyager",
+     "modelNumber": "CTC789",
+     "category": "Cameras",
+     "features": {
+       "resolution": "20 MP",
+       "sensorType": "1-inch",
+       "videoRecording": "1080p",
+       "imageStabilization": false
+     },
+     "img": "compact_travel_cam_image.jpg"
+   }
+]
