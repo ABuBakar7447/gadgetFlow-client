@@ -13,9 +13,16 @@ export const gadgetApi = createApi({
                 url: `gadgetdelete/${id}`,
                 method: 'DELETE'
             })
-        })
+        }),
+        gadgetDataUpdata: builder.mutation({
+            query: ({id, data})=>({
+                url: `gadgetdataupdate/${id}`,
+                method: 'PUT',
+                body:data
+            })
+        }),
     })
 })
 
 
-export const {useGetAllGedgetQuery, useGadgetDeleteMutation} = gadgetApi;
+export const {useGetAllGedgetQuery, useGadgetDeleteMutation, useGadgetDataUpdataMutation} = gadgetApi;

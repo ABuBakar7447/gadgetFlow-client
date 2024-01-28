@@ -1,9 +1,14 @@
+import { useState } from "react";
 import { useGadgetDeleteMutation, useGetAllGedgetQuery } from "../../../Redux/api";
+import UpdateGadget from "./UpdateGadget";
+import { ILaptop } from "../../../Globaltypes/globaltypes";
+
 
 
 const Allgadget = () => {
     const { data, error, isLoading } = useGetAllGedgetQuery('');
-    const [gadgetDelete] = useGadgetDeleteMutation()
+    const [gadgetDelete] = useGadgetDeleteMutation();
+    const [proitem, setitem] = useState([])
 
     if (isLoading) {
         <div>
@@ -11,10 +16,14 @@ const Allgadget = () => {
         </div>
     }
 
-    const handleDelete = (id:string) =>{
+    const handleDelete = (id: string) => {
         console.log(id);
         gadgetDelete(id);
-        
+
+    }
+
+    const handleitem = (item:any) =>{
+        setitem(item)
     }
     return (
         <div>
@@ -30,11 +39,12 @@ const Allgadget = () => {
                             <th>Brand & Price</th>
                             <th>Features</th>
                             <th>Action</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* row 1 */}
-                        {data?.map((item, index) => <tr key={item.id}>
+                        {data?.map((item: ILaptop, index:number) => <tr key={item.id}>
                             <th className="w-24">
                                 {index + 1}
                             </th>
@@ -60,22 +70,29 @@ const Allgadget = () => {
 
                             </td>
                             <td className="">
-                                Ram/Resolution: {item.features.RAM || item.features.cameraResolution || item.features.resolution}<br/>
-                                Storage/VideoRecording: {item.features.storageCapacity || item.features.videoRecording}<br/>
-                                Processor/Screensize: {item.features.processor || item.features.screenSize || NaN }<br/>
-                            
+                                Ram {item.features.RAM}<br />
+                                Storage: {item.features.storageCapacity}<br />
+                                Processor: {item.features.processor}<br />
+
                             </td>
                             <th>
-                                <button onClick={()=>handleDelete(item._id)} className="btn btn-sm btn-error">Delete</button>
+                                <button onClick={() => handleDelete(item._id)} className="btn btn-sm btn-error">Delete</button>
                             </th>
 
                             <th>
-                                
+
+                                <button onClick={()=>handleitem(item)}>
+                                    <label htmlFor="my_modal_6" className="btn">open modal</label>
+
+                                </button>
+
                             </th>
+                            
                         </tr>)
                         }
 
                     </tbody>
+                    <UpdateGadget proitem={proitem}></UpdateGadget>
                 </table>
             </div>
         </div>
