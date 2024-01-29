@@ -15,6 +15,7 @@ const Navbar = () => {
     const navoptions =
         <>
             <li><Link to='/'>Home</Link></li>
+            <li><Link to='/allgadget'>AllGadget</Link></li>
             <li><Link to='/dashboard/allgadget'>Dashboard</Link></li>
 
 

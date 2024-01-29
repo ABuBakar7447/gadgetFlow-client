@@ -1,5 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useGadgetDataUpdataMutation } from "../../../Redux/api";
+import { ILaptop } from "../../../Globaltypes/globaltypes";
 
 interface IFormInput {
     id: number;
@@ -22,7 +23,12 @@ interface IFormInput {
     img: string;
 }
 
-const UpdateGadget = ({ proitem }) => {
+interface Iprops {
+    proitem: ILaptop;
+}
+
+
+const UpdateGadget = ({ proitem }:Iprops) => {
     const [gadgetDataUpdata] = useGadgetDataUpdataMutation();
 
     const {_id} = proitem;
@@ -56,8 +62,8 @@ const UpdateGadget = ({ proitem }) => {
                     const product = {
                         id:proitem.id,
                         name:data.name,
-                        price:data.price,
-                        quantity:data.quantity,
+                        price:parseFloat(data.price),
+                        quantity:parseInt(data.quantity),
                         releaseDate:data.releaseDate,
                         brand:data.brand,
                         modelNumber:data.modelNumber,

@@ -6,7 +6,7 @@ import { ILaptop } from "../../../Globaltypes/globaltypes";
 
 
 const Allgadget = () => {
-    const { data, error, isLoading } = useGetAllGedgetQuery('');
+    const { data, isLoading } = useGetAllGedgetQuery('',{refetchOnMountOrArgChange:true, pollingInterval:30000});
     const [gadgetDelete] = useGadgetDeleteMutation();
     const [proitem, setitem] = useState([])
 
@@ -44,7 +44,7 @@ const Allgadget = () => {
                     </thead>
                     <tbody>
                         {/* row 1 */}
-                        {data?.map((item: ILaptop, index:number) => <tr key={item.id}>
+                        {data?.map((item: ILaptop, index:number) => <tr key={item._id}>
                             <th className="w-24">
                                 {index + 1}
                             </th>
@@ -82,7 +82,7 @@ const Allgadget = () => {
                             <th>
 
                                 <button onClick={()=>handleitem(item)}>
-                                    <label htmlFor="my_modal_6" className="btn">open modal</label>
+                                    <label htmlFor="my_modal_6" className="btn">Update</label>
 
                                 </button>
 
