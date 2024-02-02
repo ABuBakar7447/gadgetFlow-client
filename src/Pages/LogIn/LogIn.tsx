@@ -2,6 +2,7 @@
 import { useContext } from "react";
 import { useForm, SubmitHandler } from "react-hook-form"
 import { AuthContext } from "../../Providers/AuthProviders";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface IFormInput {
   email: string
@@ -11,13 +12,23 @@ interface IFormInput {
 
 
 const LogIn = () => {
-    const {signInUser} = useContext(AuthContext)
+    const {signInUser}:any = useContext(AuthContext)
     const { register, handleSubmit } = useForm<IFormInput>()
+
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+
+    const from = location.state?.from?.pathname || "/";
+
     const onSubmit: SubmitHandler<IFormInput> = (data) =>{
         signInUser(data.email, data.password)
-        .then(result=>{
+        .then((result:any)=>{
             const user = result.user;
             console.log(user);
+
+            navigate(from, {replace: true})
         })
     }
     

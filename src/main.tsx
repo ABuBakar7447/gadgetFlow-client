@@ -6,6 +6,8 @@ import { router } from './Router/routes.tsx'
 import AuthProvider from './Providers/AuthProviders.tsx'
 import { Provider } from 'react-redux'
 import { store } from './Redux/store.tsx'
+import 'react-day-picker/dist/style.css';
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

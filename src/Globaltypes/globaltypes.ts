@@ -19,4 +19,6 @@ export interface ILaptop {
         screenSize: string;
     };
     img: string;
+    status:boolean;
+    addedquantity:number
 }

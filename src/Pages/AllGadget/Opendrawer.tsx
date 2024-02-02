@@ -20,14 +20,14 @@ const Opendrawer = () => {
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                     {/* Page content here */}
-                    <label htmlFor="my-drawer" className="btn btn-primary drawer-button">Open drawer</label>
+                    <p className="text-right">
+                        <label htmlFor="my-drawer" className="btn btn-primary drawer-button">Filter Products</label>
+                    </p>
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-                        {/* Sidebar content here */}
-                        {/* <li><a onClick={() => handleDelete('hello1')}>Sidebar Item 1</a></li>
-                        <li><a onClick={() => handleUpdate('hello2')}>Sidebar Item 2</a></li> */}
+
 
                         <div className="form-control" onClick={() => dispatch(toggleState())}>
                             <label className="label cursor-pointer">

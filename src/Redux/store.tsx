@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {gadgetApi} from './api'
 import gadgetReducer from './Feature/GadgetCollection/gadgetSlice'
+import cartgadgetReducer from './Feature/CartGadget/CartGadgetSlice'
 
 
 export const store = configureStore({
     reducer: {
         product:gadgetReducer,
+        cartgadget:cartgadgetReducer,
         [gadgetApi.reducerPath]:gadgetApi.reducer
     },
 

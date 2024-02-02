@@ -2,6 +2,8 @@
 import { useContext } from "react";
 import { useForm, SubmitHandler } from "react-hook-form"
 import { AuthContext } from "../../Providers/AuthProviders";
+import { useNavigate } from "react-router-dom";
+import { useUserdataMutation } from "../../Redux/api";
 
 interface IFormInput {
     name:string
@@ -12,17 +14,33 @@ interface IFormInput {
 
 
 const SignUp = () => {
-    const {createUser, updateUserProfile} = useContext(AuthContext);
+
+    const [userdata] = useUserdataMutation()
+
+    const {createUser, updateUserProfile}:any = useContext(AuthContext);
     const { register, handleSubmit } = useForm<IFormInput>()
+
+    const navigate = useNavigate()
+
+
     const onSubmit: SubmitHandler<IFormInput> = (data) =>{
         console.log(data)
         createUser(data.email, data.password)
-        .then(result =>{
+        .then((result:any) =>{
             const user = result.user;
             console.log(user);
             updateUserProfile(data.name)
             .then(()=>{
+                const datas = {
+                     
+                        name: data.name,
+                        email:data.email
+                    
+                }
+                userdata(datas);
+
                 console.log('profile updated');
+                navigate('/')
             })
         })
         .catch((error:any) => {

@@ -7,6 +7,8 @@ import Dashboard from "../Layout/Dashboard/Dashboard";
 import Allgadget from "../Pages/Dashboard/Allgadget/Allgadget";
 import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
 import AllGadget from "../Pages/AllGadget/AllGadget";
+import CartGadget from "../Pages/CartGadget/CartGadget";
+import Orderpage from "../Pages/Order/Orderpage";
 
 export const router = createBrowserRouter([
     {
@@ -22,12 +24,20 @@ export const router = createBrowserRouter([
                 element:<AllGadget></AllGadget>
             },
             {
+                path:'/cart',
+                element:<CartGadget></CartGadget>
+            },
+            {
                 path:'/login',
                 element:<LogIn></LogIn>
             },
             {
                 path:'/signup',
                 element:<SignUp></SignUp>
+            },
+            {
+                path:'/orderpage',
+                element:<Orderpage></Orderpage>
             }
 
         ]
