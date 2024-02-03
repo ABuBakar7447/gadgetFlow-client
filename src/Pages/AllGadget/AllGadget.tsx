@@ -4,6 +4,7 @@ import GadgetCard from "./GadgetCard";
 import Opendrawer from "./Opendrawer";
 import { useAppSelector } from "../../Redux/hook";
 import { ILaptop } from "../../Globaltypes/globaltypes";
+import { useState } from "react";
 
 
 const AllGadget = () => {
@@ -11,10 +12,16 @@ const AllGadget = () => {
     const { data, isLoading } = useGetAllGedgetQuery('', { refetchOnMountOrArgChange: true, pollingInterval: 30000 });
 
 
-    const { priceRange, status } = useAppSelector(state => state.product)
+    const { priceRange, status, brand,modelNumber } = useAppSelector(state => state.product);
+    const [searchQuery, setSearchQuery] = useState('');
 
-    const datas  = data?.filter((item:ILaptop)=> item.status === true);
+    console.log(brand, status,modelNumber);
 
+
+    const datas = data?.filter((item: ILaptop) => item.status === true);
+
+    let productsData = datas;
+    // console.log(productsData);
 
 
     if (isLoading) {
@@ -25,24 +32,42 @@ const AllGadget = () => {
         );
     }
 
-    let productsData = datas;
+
 
     if (status) {
-        if (status) {
-            productsData = datas?.filter(
-                (item: { status: boolean; price: number }) =>
-                    item.status === true && item.price < priceRange
-            );
-        } else if (priceRange > 0) {
+         if (status && priceRange > 0) {
             productsData = datas?.filter(
                 (item: { price: number }) => item.price < priceRange
             );
-        } else {
+        }
+        else {
             productsData = datas;
         }
-    } else {
+    }
+    else if (brand) {
+        productsData = datas?.filter(
+            (item: { brand: string }) => item.brand.toLowerCase().includes(brand.toLowerCase()));
+    }
+    else if (modelNumber) {
+        productsData = datas?.filter(
+            (item: { modelNumber: string }) => item.modelNumber.toLowerCase().includes(modelNumber.toLocaleLowerCase()));
+    }
+    else {
         productsData = datas;
     }
+
+
+
+
+    
+
+    const filteredData = searchQuery
+        ? productsData?.filter((item: ILaptop) =>
+            item.name.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        : productsData;
+
+    // console.log(filteredData);
 
 
 
@@ -54,18 +79,27 @@ const AllGadget = () => {
             </div>
 
             <div className="col-span-9">
-                
+                <div>
+                    {/* // searchBar// */}
+                    <input
+                        type="text"
+                        placeholder="Type here"
+                        className="input input-bordered input-primary w-full max-w-xs"
+                        value={searchQuery}
+                        onChange={e => setSearchQuery(e.target.value)}
+                    />
+                </div>
                 <Opendrawer></Opendrawer>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 place-items-center">
                     {
-                        productsData?.map((gadget: any) => <GadgetCard key={gadget._id} gadget={gadget}></GadgetCard>)
+                        filteredData?.map((gadget: any) => <GadgetCard key={gadget._id} gadget={gadget}></GadgetCard>)
                     }
                 </div>
             </div>
 
 
-            
+
         </div>
     );
 };

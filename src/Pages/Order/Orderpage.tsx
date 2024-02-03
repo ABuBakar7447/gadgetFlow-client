@@ -47,6 +47,7 @@ const Orderpage = () => {
 
             else {
                 const quantity = item.quantity;
+                console.log('status')
                 const data = {
                     id: item._id,
                     data: { status: false, quantity }

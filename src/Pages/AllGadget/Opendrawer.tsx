@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../Redux/hook";
-import { setPriceRange, toggleState } from "../../Redux/Feature/GadgetCollection/gadgetSlice";
+import { searchByBrand, searchBymodelNumber, setPriceRange, toggleState } from "../../Redux/Feature/GadgetCollection/gadgetSlice";
 
 
 const Opendrawer = () => {
 
     const [value, setValue] = useState<number>(5000);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchmodel, setSearchmodel] = useState('');
     const dispatch = useAppDispatch();
 
 
@@ -13,6 +15,17 @@ const Opendrawer = () => {
     const handlechange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(Number(e.target.value))
         dispatch(setPriceRange(value));
+    }
+
+    const handleBrand= (e: React.ChangeEvent<HTMLInputElement>)=>{
+        setSearchQuery(e.target.value);
+        dispatch(searchByBrand(searchQuery))
+    }
+
+
+    const handleModelNumber= (e: React.ChangeEvent<HTMLInputElement>)=>{
+        setSearchmodel(e.target.value);
+        dispatch(searchBymodelNumber(searchmodel))
     }
     return (
         <div>
@@ -28,7 +41,7 @@ const Opendrawer = () => {
                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
 
-
+                        {/* Product In Stock with Price Change */}
                         <div className="form-control" onClick={() => dispatch(toggleState())}>
                             <label className="label cursor-pointer">
                                 <span className="label-text">Remember me</span>
@@ -36,11 +49,48 @@ const Opendrawer = () => {
                             </label>
                         </div>
 
-
+                        {/* Product In Stock with Price Change */}
                         <div className="flex items-center space-x-4">
                             <label htmlFor="slider" className="text-lg font-semibold">Slider Value: {value}</label>
 
                             <input type="range" min={0} max="10000" value={value} className="range range-primary" onChange={handlechange} />
+                        </div>
+
+
+
+                        {/* Seach By Brand */}
+                        <div className="my-10">
+                            {/* // searchBar// */}
+                            <label>
+                                <p>
+                                    Search By Brand
+                                </p>
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="Type here"
+                                className="input input-bordered input-primary w-full max-w-xs"
+                                value={searchQuery}
+                                onChange={handleBrand}
+                            />
+                        </div>
+
+
+                        {/* Search By Model Number */}
+                        <div className="mb-10">
+                            {/* // searchBar// */}
+                            <label>
+                                <p>
+                                    Search By Model Number
+                                </p>
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="Type here"
+                                className="input input-bordered input-primary w-full max-w-xs"
+                                value={searchmodel}
+                                onChange={handleModelNumber}
+                            />
                         </div>
                     </ul>
                 </div>
