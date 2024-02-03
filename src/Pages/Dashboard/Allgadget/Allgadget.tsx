@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useGadgetDeleteMutation, useGetAllGedgetQuery } from "../../../Redux/api";
 import UpdateGadget from "./UpdateGadget";
 import { ILaptop } from "../../../Globaltypes/globaltypes";
+import Opendrawer from "../../AllGadget/Opendrawer";
+import { useAppSelector } from "../../../Redux/hook";
 
 
 
 const Allgadget = () => {
-    const { data, isLoading } = useGetAllGedgetQuery('',{refetchOnMountOrArgChange:true, pollingInterval:30000});
+    const { data, isLoading } = useGetAllGedgetQuery('', { refetchOnMountOrArgChange: true, pollingInterval: 30000 });
     const [gadgetDelete] = useGadgetDeleteMutation();
     const [proitem, setitem] = useState([])
 
@@ -16,17 +18,109 @@ const Allgadget = () => {
         </div>
     }
 
+
+
+    const { priceRange, status, brand, modelNumber, category, os, connectivity } = useAppSelector(state => state.product);
+    const [searchQuery, setSearchQuery] = useState('');
+
+    // console.log(brand, status, modelNumber);
+
+
+    const datas = data?.filter((item: ILaptop) => item.status === true);
+
+    let productsData = datas;
+    // console.log(productsData);
+
+
+    if (isLoading) {
+        return (
+            <div>
+                ....Loading..Please Wait.
+            </div>
+        );
+    }
+
+
+
+    if (status) {
+        if (status && priceRange > 0) {
+            productsData = datas?.filter(
+                (item: { price: number }) => item.price < priceRange
+            );
+        }
+        else {
+            productsData = datas;
+        }
+    }
+    else if (brand) {
+        productsData = datas?.filter(
+            (item: { brand: string }) => item.brand.toLowerCase().includes(brand.toLowerCase()));
+    }
+    else if (modelNumber) {
+        productsData = datas?.filter(
+            (item: { modelNumber: string }) => item.modelNumber.toLowerCase().includes(modelNumber.toLocaleLowerCase()));
+    }
+    else if (category) {
+        productsData = datas?.filter(
+            (item: { category: string }) => item.category.toLowerCase().includes(category.toLocaleLowerCase()));
+    }
+    else if (os) {
+        productsData = datas?.filter(
+            (item: { operatingSystem: string }) => item.operatingSystem.toLowerCase().includes(os.toLocaleLowerCase()));
+    }
+    else if (connectivity) {
+        productsData = datas?.filter(
+            (item: { connectivity: string[] }) =>
+                item?.connectivity?.some(conn => conn.toLowerCase().includes(connectivity.toLowerCase()))
+        );
+    }
+    else {
+        productsData = datas;
+    }
+
+
+
+
+
+
+    const filteredData = searchQuery
+        ? productsData?.filter((item: ILaptop) =>
+            item.name.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        : productsData;
+
+    // console.log(filteredData);
+
+
+
     const handleDelete = (id: string) => {
         console.log(id);
         gadgetDelete(id);
 
     }
 
-    const handleitem = (item:any) =>{
+    const handleitem = (item: any) => {
         setitem(item)
     }
+
+
+
+    
     return (
         <div>
+            <div className="flex justify-center items-center my-8 px-5">
+                <div className="lg:w-3/4 w-1/2 mr-2">
+                    {/* // searchBar// */}
+                    <input
+                        type="text"
+                        placeholder="Type here to search product"
+                        className="input input-bordered input-primary w-full lg:w-1/2"
+                        value={searchQuery}
+                        onChange={e => setSearchQuery(e.target.value)}
+                    />
+                </div>
+                <Opendrawer></Opendrawer>
+            </div>
             <div className="overflow-x-auto bg-gray-600 text-white">
                 <table className="table">
                     {/* head */}
@@ -44,7 +138,7 @@ const Allgadget = () => {
                     </thead>
                     <tbody>
                         {/* row 1 */}
-                        {data?.map((item: ILaptop, index:number) => <tr key={item._id}>
+                        {filteredData?.map((item: ILaptop, index: number) => <tr key={item._id}>
                             <th className="w-24">
                                 {index + 1}
                             </th>
@@ -81,13 +175,13 @@ const Allgadget = () => {
 
                             <th>
 
-                                <button onClick={()=>handleitem(item)}>
+                                <button onClick={() => handleitem(item)}>
                                     <label htmlFor="my_modal_6" className="btn">Update</label>
 
                                 </button>
 
                             </th>
-                            
+
                         </tr>)
                         }
 
