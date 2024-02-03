@@ -56,6 +56,10 @@ const AllGadget = () => {
         productsData = datas?.filter(
             (item: { category: string }) => item.category.toLowerCase().includes(category.toLocaleLowerCase()));
     }
+    else if (os) {
+        productsData = datas?.filter(
+            (item: { operatingSystem: string }) => item.operatingSystem.toLowerCase().includes(os.toLocaleLowerCase()));
+    }
     
     else {
         productsData = datas;
