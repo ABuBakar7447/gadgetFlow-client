@@ -60,7 +60,12 @@ const AllGadget = () => {
         productsData = datas?.filter(
             (item: { operatingSystem: string }) => item.operatingSystem.toLowerCase().includes(os.toLocaleLowerCase()));
     }
-    
+    else if (connectivity) {
+        productsData = datas?.filter(
+            (item: { connectivity: string[] }) =>
+                item?.connectivity?.some(conn => conn.toLowerCase().includes(connectivity.toLowerCase()))
+        );
+    }
     else {
         productsData = datas;
     }
