@@ -12,10 +12,10 @@ const AllGadget = () => {
     const { data, isLoading } = useGetAllGedgetQuery('', { refetchOnMountOrArgChange: true, pollingInterval: 30000 });
 
 
-    const { priceRange, status, brand,modelNumber } = useAppSelector(state => state.product);
+    const { priceRange, status, brand, modelNumber,category,os, connectivity } = useAppSelector(state => state.product);
     const [searchQuery, setSearchQuery] = useState('');
 
-    console.log(brand, status,modelNumber);
+    // console.log(brand, status, modelNumber);
 
 
     const datas = data?.filter((item: ILaptop) => item.status === true);
@@ -35,7 +35,7 @@ const AllGadget = () => {
 
 
     if (status) {
-         if (status && priceRange > 0) {
+        if (status && priceRange > 0) {
             productsData = datas?.filter(
                 (item: { price: number }) => item.price < priceRange
             );
@@ -52,6 +52,11 @@ const AllGadget = () => {
         productsData = datas?.filter(
             (item: { modelNumber: string }) => item.modelNumber.toLowerCase().includes(modelNumber.toLocaleLowerCase()));
     }
+    else if (category) {
+        productsData = datas?.filter(
+            (item: { category: string }) => item.category.toLowerCase().includes(category.toLocaleLowerCase()));
+    }
+    
     else {
         productsData = datas;
     }
@@ -59,7 +64,7 @@ const AllGadget = () => {
 
 
 
-    
+
 
     const filteredData = searchQuery
         ? productsData?.filter((item: ILaptop) =>
@@ -79,18 +84,21 @@ const AllGadget = () => {
             </div>
 
             <div className="col-span-9">
-                <div>
-                    {/* // searchBar// */}
-                    <input
-                        type="text"
-                        placeholder="Type here"
-                        className="input input-bordered input-primary w-full max-w-xs"
-                        value={searchQuery}
-                        onChange={e => setSearchQuery(e.target.value)}
-                    />
+                <div className="flex justify-center items-center my-8 px-5">
+                    <div className="lg:w-3/4 w-1/2 mr-2">
+                        {/* // searchBar// */}
+                        <input
+                            type="text"
+                            placeholder="Type here to search product"
+                            className="input input-bordered input-primary w-full lg:w-1/2"
+                            value={searchQuery}
+                            onChange={e => setSearchQuery(e.target.value)}
+                        />
+                    </div>
+                    <Opendrawer></Opendrawer>
                 </div>
-                <Opendrawer></Opendrawer>
 
+                
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 place-items-center">
                     {
                         filteredData?.map((gadget: any) => <GadgetCard key={gadget._id} gadget={gadget}></GadgetCard>)

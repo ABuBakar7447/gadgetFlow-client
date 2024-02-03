@@ -1,6 +1,45 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../Redux/hook";
-import { searchByBrand, searchBymodelNumber, setPriceRange, toggleState } from "../../Redux/Feature/GadgetCollection/gadgetSlice";
+import { searchByBrand, searchBymodelNumber, searchbyCategory, searchbyConnectivity, searchbyOS, setPriceRange, toggleState } from "../../Redux/Feature/GadgetCollection/gadgetSlice";
+
+import { useForm, SubmitHandler } from "react-hook-form"
+
+enum CategoryEnum {
+    Laptop = "Laptop",
+    Mobile = "Mobile",
+    other = "other",
+}
+
+enum OsEnum {
+    Windows = "Windows",
+    IOS = "IOS",
+    MacOS = "MacOS"
+
+}
+
+enum ConnectivityEnum {
+    WiFi = "WiFi",
+    Ethernet = "Ethernet",
+    USBA = "USBA",
+    USBC = "USBC",
+    Thunderbolt = "Thunderbolt",
+    Blutooth = "Blutooth",
+    HDMI = "HDMI"
+
+}
+
+interface IFormInput {
+
+    gender: CategoryEnum;
+    os: OsEnum
+    connectivity: ConnectivityEnum
+}
+
+
+
+// interface IFormInputOS {
+//     os: OsEnum
+// }
 
 
 const Opendrawer = () => {
@@ -8,6 +47,7 @@ const Opendrawer = () => {
     const [value, setValue] = useState<number>(5000);
     const [searchQuery, setSearchQuery] = useState('');
     const [searchmodel, setSearchmodel] = useState('');
+
     const dispatch = useAppDispatch();
 
 
@@ -17,23 +57,47 @@ const Opendrawer = () => {
         dispatch(setPriceRange(value));
     }
 
-    const handleBrand= (e: React.ChangeEvent<HTMLInputElement>)=>{
+    const handleBrand = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value);
         dispatch(searchByBrand(searchQuery))
     }
 
 
-    const handleModelNumber= (e: React.ChangeEvent<HTMLInputElement>)=>{
+
+
+    const handleModelNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchmodel(e.target.value);
         dispatch(searchBymodelNumber(searchmodel))
     }
+
+
+
+    const { register, handleSubmit } = useForm<IFormInput>()
+    const onSubmit: SubmitHandler<IFormInput> = (data) => {
+
+        dispatch(searchbyCategory(data.gender))
+    }
+
+
+    const handleOS: SubmitHandler<IFormInput> = (data) => {
+
+        dispatch(searchbyOS(data.os))
+    }
+
+
+    const handleConnectivity: SubmitHandler<IFormInput> = (data) => {
+
+        dispatch(searchbyConnectivity(data.connectivity))
+    }
+
+
     return (
         <div>
             <div className="drawer z-10">
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                     {/* Page content here */}
-                    <p className="text-right">
+                    <p className="">
                         <label htmlFor="my-drawer" className="btn btn-primary drawer-button">Filter Products</label>
                     </p>
                 </div>
@@ -92,6 +156,54 @@ const Opendrawer = () => {
                                 onChange={handleModelNumber}
                             />
                         </div>
+
+
+                        {/* search by category */}
+
+                        <form onSubmit={handleSubmit(onSubmit)} className="w-full mb-10">
+
+                            <label className="font-bold"> Search By Category</label><br />
+                            <select {...register("gender")} className="w-3/5 h-12 rounded-lg border-primary border-[1px]">
+                                <option value="Laptop">Laptop</option>
+                                <option value="Mobile">Mobile</option>
+
+                            </select>
+                            <input type="submit" value="Search" className="text-[16px] m-2 btn btn-primary btn-sm" />
+                        </form>
+
+
+                        <form onSubmit={handleSubmit(handleOS)} className="w-full mb-10">
+
+                            <label className="font-bold">Search By Operating System</label><br />
+                            <select {...register("os")} className="w-3/5 h-12 rounded-lg border-primary border-[1px]">
+                                <option value="Windows">Windows</option>
+                                <option value="IOS">IOS</option>
+                                <option value="MacOS">MacOS</option>
+
+                            </select>
+                            <input type="submit" value="Search" className="text-[16px] m-2 btn btn-primary btn-sm" />
+                        </form>
+
+
+
+                        <form onSubmit={handleSubmit(handleConnectivity)} className="w-full mb-10">
+
+                            <label className="font-bold">Search By Operating System</label><br />
+                            <select {...register("connectivity")} className="w-3/5 h-12 rounded-lg border-primary border-[1px]">
+                                <option value="WiFi">WiFi</option>
+                                <option value="Ethernet">Ethernet</option>
+                                <option value="USBA">USBA</option>
+                                <option value="USBC">USBC</option>
+                                <option value="Thunderbolt">Thunderbolt</option>
+                                <option value="Blutooth">Blutooth</option>
+                                <option value="HDMI">HDMI</option>
+
+
+                            </select>
+                            <input type="submit" value="Search" className="text-[16px] m-2 btn btn-primary btn-sm" />
+                        </form>
+
+
                     </ul>
                 </div>
             </div>

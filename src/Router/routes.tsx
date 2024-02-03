@@ -9,6 +9,7 @@ import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
 import AllGadget from "../Pages/AllGadget/AllGadget";
 import CartGadget from "../Pages/CartGadget/CartGadget";
 import Orderpage from "../Pages/Order/Orderpage";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -44,7 +45,7 @@ export const router = createBrowserRouter([
     },
     {
         path:'/dashboard',
-        element:<Dashboard></Dashboard>,
+        element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children:[
             {
                 path:'allgadget',

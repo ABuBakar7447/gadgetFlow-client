@@ -6,13 +6,19 @@ interface IProduct {
   priceRange: number;
   brand:string;
   modelNumber:string;
+  category:string,
+  os:string,
+  connectivity:string
 }
 
 const initialState: IProduct = {
   status: false,
   priceRange: 5000,
   brand:'',
-  modelNumber:''
+  modelNumber:'',
+  category:'',
+  os:'',
+  connectivity:''
 };
 
 const gadgetSlice = createSlice({
@@ -31,9 +37,19 @@ const gadgetSlice = createSlice({
     searchBymodelNumber:(state, action:PayloadAction<string>)=>{
       state.modelNumber = action.payload;
     },
+    searchbyCategory:(state, action:PayloadAction<string>)=>{
+      state.category = action.payload;
+    },
+    searchbyOS:(state, action:PayloadAction<string>)=>{
+      state.os = action.payload;
+    },
+
+    searchbyConnectivity:(state, action:PayloadAction<string>)=>{
+      state.connectivity = action.payload;
+    },
   },
 });
 
-export const { toggleState, setPriceRange, searchByBrand, searchBymodelNumber } = gadgetSlice.actions;
+export const { toggleState, setPriceRange, searchByBrand, searchBymodelNumber, searchbyCategory, searchbyOS, searchbyConnectivity } = gadgetSlice.actions;
 
 export default gadgetSlice.reducer;
