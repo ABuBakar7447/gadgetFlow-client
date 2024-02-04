@@ -14,11 +14,11 @@ const Allgadget = () => {
     const [gadgetDelete] = useGadgetDeleteMutation();
     const [proitem, setitem] = useState([])
     const [dupliproitem, setdupliproitem] = useState([])
-    
-    const dispatch = useAppDispatch()
-    
 
-   
+    const dispatch = useAppDispatch()
+
+
+
 
     if (isLoading) {
         <div>
@@ -27,7 +27,7 @@ const Allgadget = () => {
     }
 
 
-    const {productId} = useAppSelector(state => state.productsId)
+    const { productId } = useAppSelector(state => state.productsId)
     const { priceRange, status, brand, modelNumber, category, os, connectivity } = useAppSelector(state => state.product);
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -114,8 +114,8 @@ const Allgadget = () => {
     }
 
 
-    const handleBulkDelete = ids =>{
-        ids.map(item=>{
+    const handleBulkDelete = ids => {
+        ids.map(item => {
             console.log(item)
             gadgetDelete(item)
         })
@@ -140,27 +140,26 @@ const Allgadget = () => {
 
     return (
         <div>
-            <div className="flex justify-center items-center my-8 px-5">
-                <div className="lg:w-3/4 w-1/2 mr-2">
-                    {/* // searchBar// */}
+            <div className="flex flex-col my-8 px-5 lg:flex-row lg:items-center lg:justify-between">
+                <div className="lg:w-1/2 w-full mb-4 lg:mb-0">
+                    {/* Search Bar */}
                     <input
                         type="text"
                         placeholder="Type here to search product"
-                        className="input input-bordered input-primary w-full lg:w-1/2"
+                        className="input input-bordered input-primary w-full"
                         value={searchQuery}
-                        onChange={e => setSearchQuery(e.target.value)}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                     />
                 </div>
-                <Opendrawer></Opendrawer>
+                <Opendrawer />
             </div>
+
             <div className="overflow-x-auto bg-gray-600 text-white">
-                <table className="table">
-                    {/* head */}
-                    <thead>
+                <table className="table w-full">
+                    {/* Head */}
+                    <thead className="text-white">
                         <tr>
-                            <th>
-                                index
-                            </th>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Brand & Price</th>
                             <th>Features</th>
@@ -169,80 +168,77 @@ const Allgadget = () => {
                             <th>Action</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        {/* row 1 */}
-                        {filteredData?.map((item: ILaptop, index: number) => <tr key={item._id}>
-                            <th className="w-24">
-                                {index + 1}
-                                <div className="form-control" onClick={() => dispatch(addProductId(item._id))}>
-                                    <label className="label cursor-pointer">
-                                        <span className="label-text"></span>
-                                        <input type="checkbox" className="checkbox checkbox-primary" />
-                                    </label>
-                                </div>
-                            </th>
-                            <td className="w-52">
-                                <div className="flex items-center w-12 gap-3">
-                                    <div className="avatar">
-                                        <div className="mask mask-squircle  h-12">
-                                            <img src={item.img} alt="Avatar Tailwind CSS Component" />
+                        {filteredData?.map((item: ILaptop, index: number) => (
+                            <tr key={item._id}>
+                                <th className="w-16 flex items-center gap-2">
+                                    {index + 1}
+                                    <div className="form-control" onClick={() => dispatch(addProductId(item._id))}>
+                                        <label className="label cursor-pointer">
+                                            <span className="label-text"></span>
+                                            <input type="checkbox" className="checkbox checkbox-primary" />
+                                        </label>
+                                    </div>
+                                </th>
+
+                                <td className="w-1/3 lg:w-1/4">
+                                    <div className="flex items-center w-full gap-3">
+                                        <div className="avatar">
+                                            <div className="mask mask-squircle h-12">
+                                                <img src={item.img} alt="Avatar Tailwind CSS Component" />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className="font-bold">{item.name}</div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <div className="font-bold">{item.name}</div>
+                                </td>
 
+                                <td className="w-1/2 lg:w-1/4">
+                                    <div className="flex flex-col gap-2">
+                                        {item.modelNumber}
+                                        <span className="badge badge-ghost badge-sm text-white p-3">${item.price}</span>
                                     </div>
-                                </div>
-                            </td>
-                            <td className="w-48">
-                                <div className="flex flex-col gap-2 items-center justify-center">
-                                    {item.modelNumber}
+                                </td>
 
-                                    <span className="badge badge-ghost badge-sm text-white p-3">${item.price}</span>
-                                </div>
+                                <td className="lg:w-1/4">
+                                    Ram {item.features.RAM}<br />
+                                    Storage: {item.features.storageCapacity}<br />
+                                    Processor: {item.features.processor}<br />
+                                </td>
 
-                            </td>
-                            <td className="">
-                                Ram {item.features.RAM}<br />
-                                Storage: {item.features.storageCapacity}<br />
-                                Processor: {item.features.processor}<br />
+                                <th className="w-1/6 lg:w-1/12">
+                                    <button onClick={() => handleDelete(item._id)} className="btn btn-sm btn-error">Delete</button>
+                                </th>
 
-                            </td>
-                            <th>
-                                <button onClick={() => handleDelete(item._id)} className="btn btn-sm btn-error">Delete</button>
-                            </th>
+                                <th className="w-1/6 lg:w-1/12">
+                                    <button onClick={() => handleitem(item)}>
+                                        <label htmlFor="my_modal_6" className="btn">Update</label>
+                                    </button>
+                                </th>
 
-                            <th>
-
-                                <button onClick={() => handleitem(item)}>
-                                    <label htmlFor="my_modal_6" className="btn">Update</label>
-
-                                </button>
-
-                            </th>
-
-                            <th>
-
-                                <button onClick={() => handledupliitem(item)}>
-                                    <label htmlFor="my_modal_7" className="btn">Create Variant</label>
-
-                                </button>
-
-                            </th>
-
-                        </tr>)
-                        }
-
+                                <th className="w-1/6 lg:w-1/12">
+                                    <button onClick={() => handledupliitem(item)}>
+                                        <label htmlFor="my_modal_7" className="btn">Create Variant</label>
+                                    </button>
+                                </th>
+                            </tr>
+                        ))}
                     </tbody>
-                    <UpdateGadget proitem={proitem}></UpdateGadget>
-                    <DuplicateProduct dupliproitem ={dupliproitem}></DuplicateProduct>
-                    {/* <UpdateGadget dupliproitem ={dupliproitem}></UpdateGadget> */}
                 </table>
             </div>
+
             <div className="text-center my-12">
-                <button className="btn btn-md btn-primary" onClick={()=>handleBulkDelete(productId)}>Delete Selected Item</button>
+                <button className="btn btn-md btn-primary" onClick={() => handleBulkDelete(productId)}>
+                    Delete Selected Item
+                </button>
             </div>
+
+            <UpdateGadget proitem={proitem} />
+            <DuplicateProduct dupliproitem={dupliproitem} />
         </div>
+
     );
 };
 
