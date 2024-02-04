@@ -33,7 +33,6 @@ const AddProduct = () => {
     const onSubmit: SubmitHandler<IFormInput> = (data) => {
         console.log(data);
         
-        console.log(typeof(parseInt(data.quantity)))
 
         const formdata = new FormData();
         formdata.append('image', data.img[0])
@@ -71,14 +70,13 @@ const AddProduct = () => {
                             storageCapacity: data.features.storageCapacity,
                             screenSize: data.features.screenSize,
                         },
-                        img: imgURL
+                        img: imgURL,
+                        status:true,
+                        addedquantity:parseInt('0')
                     }
 
                     console.log(product);
-                    const datas = {
-                        
-                        data: { product }
-                    }
+                    
 
                     gadgetDataAdd({product})
 

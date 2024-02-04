@@ -3,7 +3,9 @@ import { useGadgetDeleteMutation, useGetAllGedgetQuery } from "../../../Redux/ap
 import UpdateGadget from "./UpdateGadget";
 import { ILaptop } from "../../../Globaltypes/globaltypes";
 import Opendrawer from "../../AllGadget/Opendrawer";
-import { useAppSelector } from "../../../Redux/hook";
+import { useAppDispatch, useAppSelector } from "../../../Redux/hook";
+import { addProductId } from "../../../Redux/Feature/BulkDelete/BulkDeleteSlice";
+import DuplicateProduct from "./DuplicateProduct";
 
 
 
@@ -11,6 +13,12 @@ const Allgadget = () => {
     const { data, isLoading } = useGetAllGedgetQuery('', { refetchOnMountOrArgChange: true, pollingInterval: 30000 });
     const [gadgetDelete] = useGadgetDeleteMutation();
     const [proitem, setitem] = useState([])
+    const [dupliproitem, setdupliproitem] = useState([])
+    
+    const dispatch = useAppDispatch()
+    
+
+   
 
     if (isLoading) {
         <div>
@@ -19,7 +27,7 @@ const Allgadget = () => {
     }
 
 
-
+    const {productId} = useAppSelector(state => state.productsId)
     const { priceRange, status, brand, modelNumber, category, os, connectivity } = useAppSelector(state => state.product);
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -39,7 +47,6 @@ const Allgadget = () => {
             </div>
         );
     }
-
 
 
     if (status) {
@@ -95,17 +102,42 @@ const Allgadget = () => {
 
     const handleDelete = (id: string) => {
         console.log(id);
-        gadgetDelete(id);
+        // gadgetDelete(id);
 
     }
 
     const handleitem = (item: any) => {
         setitem(item)
     }
+    const handledupliitem = (item: any) => {
+        setdupliproitem(item)
+    }
+
+
+    const handleBulkDelete = ids =>{
+        ids.map(item=>{
+            console.log(item)
+            gadgetDelete(item)
+        })
+    }
 
 
 
-    
+
+    // const handleButtonClick = (id) => {
+    //     // Set the clicked button's ID in the state
+    //     console.log(id);
+    //     setSelectedButtonId(id);
+
+    //     setIsToggled
+
+
+
+    // };
+
+
+
+
     return (
         <div>
             <div className="flex justify-center items-center my-8 px-5">
@@ -134,6 +166,7 @@ const Allgadget = () => {
                             <th>Features</th>
                             <th>Action</th>
                             <th>Action</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -141,6 +174,12 @@ const Allgadget = () => {
                         {filteredData?.map((item: ILaptop, index: number) => <tr key={item._id}>
                             <th className="w-24">
                                 {index + 1}
+                                <div className="form-control" onClick={() => dispatch(addProductId(item._id))}>
+                                    <label className="label cursor-pointer">
+                                        <span className="label-text"></span>
+                                        <input type="checkbox" className="checkbox checkbox-primary" />
+                                    </label>
+                                </div>
                             </th>
                             <td className="w-52">
                                 <div className="flex items-center w-12 gap-3">
@@ -182,12 +221,26 @@ const Allgadget = () => {
 
                             </th>
 
+                            <th>
+
+                                <button onClick={() => handledupliitem(item)}>
+                                    <label htmlFor="my_modal_7" className="btn">Create Variant</label>
+
+                                </button>
+
+                            </th>
+
                         </tr>)
                         }
 
                     </tbody>
                     <UpdateGadget proitem={proitem}></UpdateGadget>
+                    <DuplicateProduct dupliproitem ={dupliproitem}></DuplicateProduct>
+                    {/* <UpdateGadget dupliproitem ={dupliproitem}></UpdateGadget> */}
                 </table>
+            </div>
+            <div className="text-center my-12">
+                <button className="btn btn-md btn-primary" onClick={()=>handleBulkDelete(productId)}>Delete Selected Item</button>
             </div>
         </div>
     );
