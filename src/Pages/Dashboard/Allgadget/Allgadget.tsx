@@ -177,7 +177,7 @@ const Allgadget = () => {
                                     <div className="form-control" onClick={() => dispatch(addProductId(item._id))}>
                                         <label className="label cursor-pointer">
                                             <span className="label-text"></span>
-                                            <input type="checkbox" className="checkbox checkbox-primary" />
+                                            <input type="checkbox" className="checkbox checkbox-primary border-2" />
                                         </label>
                                     </div>
                                 </th>
