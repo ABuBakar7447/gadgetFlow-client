@@ -2,7 +2,7 @@ import { useGetAllGedgetQuery } from "../../Redux/api";
 
 
 const Home = () => {
-    const {data, error, isLoading} = useGetAllGedgetQuery('')
+    const {data, isLoading} = useGetAllGedgetQuery('')
 
     if(isLoading){
         <div className="h-96 w-1/2 mx-auto">

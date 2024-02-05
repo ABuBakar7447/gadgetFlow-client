@@ -114,26 +114,13 @@ const Allgadget = () => {
     }
 
 
-    const handleBulkDelete = ids => {
+    const handleBulkDelete =(ids: string[]): void=> {
         ids.map(item => {
             console.log(item)
             gadgetDelete(item)
         })
     }
 
-
-
-
-    // const handleButtonClick = (id) => {
-    //     // Set the clicked button's ID in the state
-    //     console.log(id);
-    //     setSelectedButtonId(id);
-
-    //     setIsToggled
-
-
-
-    // };
 
 
 

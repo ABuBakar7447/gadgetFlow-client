@@ -5,8 +5,8 @@ import { useGadgetDataAddMutation } from "../../../Redux/api";
 interface IFormInput {
     id: number;
     name: string;
-    price: number;
-    quantity: number;
+    price: string;
+    quantity: string;
     releaseDate: string;
     brand: string;
     modelNumber: string;
@@ -55,8 +55,8 @@ const AddProduct = () => {
                     const product = {
                         
                         name: data.name,
-                        price: parseFloat(data.price),
-                        quantity: parseInt(data.quantity),
+                        price: parseFloat(data.price), 
+                        quantity: parseInt(data.quantity), 
                         releaseDate: data.releaseDate,
                         brand: data.brand,
                         modelNumber: data.modelNumber,

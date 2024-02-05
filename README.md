@@ -1,30 +1,29 @@
-# React + TypeScript + Vite
+This website's name is Gadget Flow. This website sells electronic gadgets like different brands of laptops, and mobile. The feature of this website is
+-user or admin can book different products from the all product page, 
+-he can increase, or decrease the quantity of the selected product. Besides he can delete a selected product. 
+-when the admin sells a product or multiple products he needs to take data of the buyer's name email and sales date.
+-On all products page, the user can get his desired product by using filters like
+*price range
+*in stock
+*by brand name
+*by model number
+*by category
+*by OS
+*by connectivity
+*without a filter user can use the search bar to get the desired product
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+user or admin can take access to the dashboard but before that, he needs to log in or sign up first.
+in the dashboard, the admin can 
+-add a product
+-see all product list
 
-Currently, two official plugins are available:
+**In all product list
+-Admin can see all the products list,
+-Admin can delete a single product,
+-Admin can update product details,
+-Admin can duplicate product details and create new product
+-Admin can select multiple products and delete selected products at a time.
+-Admin can use a filter to get their desired product.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+For this project, I have used Vite, React, Redux( redux toolkit), Typescript, Tailwind CSS, Daisy Ui CSS library, Firebase, Axios, JWT
+For the backend: MongoDB, Express Js, JWT, Vercel.

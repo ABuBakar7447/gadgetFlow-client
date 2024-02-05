@@ -1,12 +1,11 @@
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useGadgetDataAddMutation} from "../../../Redux/api";
-import { ILaptop } from "../../../Globaltypes/globaltypes";
 
 interface IFormInput {
     id: number;
     name: string;
-    price: number;
-    quantity: number;
+    price: string;
+    quantity: string;
     releaseDate: string;
     brand: string;
     modelNumber: string;
@@ -23,11 +22,11 @@ interface IFormInput {
     img: string;
 }
 
-interface Iprops {
-    dupliproitem: ILaptop;
-}
+// interface Iprops {
+//     dupliproitem: ILaptop;
+// }
 
-const DuplicateProduct = ({dupliproitem}:Iprops) => {
+const DuplicateProduct = ({dupliproitem}:any) => {
 
 
     const [gadgetDataAdd] = useGadgetDataAddMutation()

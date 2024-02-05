@@ -1,12 +1,12 @@
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useGadgetDataUpdataMutation } from "../../../Redux/api";
-import { ILaptop } from "../../../Globaltypes/globaltypes";
 
 interface IFormInput {
+    _id:string;
     id: number;
     name: string;
-    price: number;
-    quantity: number;
+    price: string;
+    quantity: string;
     releaseDate: string;
     brand: string;
     modelNumber: string;
@@ -23,12 +23,9 @@ interface IFormInput {
     img: string;
 }
 
-interface Iprops {
-    proitem: ILaptop;
-}
 
 
-const UpdateGadget = ({ proitem }:Iprops) => {
+const UpdateGadget = ({ proitem }:any) => {
     const [gadgetDataUpdata] = useGadgetDataUpdataMutation();
 
     const {_id} = proitem;
