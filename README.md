@@ -29,7 +29,8 @@ For this project, I have used Vite, React, Redux( redux toolkit), Typescript, Ta
 For the backend: MongoDB, Express Js, JWT, Vercel.
 
 
-**Intallation Process: To install this project you just have to clone the project and run npm i in terminal. For your personal database and backend you can create or clone my server side link from github and add your database.
+*Intallation Process: To install this project you just have to clone the project and run npm i in terminal. For your personal database and backend you can create or clone my server side link from github and add your database.
 
-**Project Name: GadgetFlow
-**Project Link: https://gadgetflow-347ef.web.app/allgadget
+*Project Name: GadgetFlow
+
+*Project Link: https://gadgetflow-347ef.web.app/allgadget
