@@ -8,7 +8,9 @@ interface IProduct {
   modelNumber:string;
   category:string,
   os:string,
-  connectivity:string
+  connectivity:string,
+  power:string,
+  feature:string
 }
 
 const initialState: IProduct = {
@@ -18,7 +20,9 @@ const initialState: IProduct = {
   modelNumber:'',
   category:'',
   os:'',
-  connectivity:''
+  connectivity:'',
+  power:'',
+  feature:''
 };
 
 const gadgetSlice = createSlice({
@@ -47,9 +51,17 @@ const gadgetSlice = createSlice({
     searchbyConnectivity:(state, action:PayloadAction<string>)=>{
       state.connectivity = action.payload;
     },
+
+    searchbyPower:(state, action:PayloadAction<string>)=>{
+      state.power = action.payload;
+    },
+
+    searchbyFeature:(state, action:PayloadAction<string>)=>{
+      state.feature = action.payload;
+    },
   },
 });
 
-export const { toggleState, setPriceRange, searchByBrand, searchBymodelNumber, searchbyCategory, searchbyOS, searchbyConnectivity } = gadgetSlice.actions;
+export const { toggleState, setPriceRange, searchByBrand, searchBymodelNumber, searchbyCategory, searchbyOS, searchbyConnectivity, searchbyPower, searchbyFeature } = gadgetSlice.actions;
 
 export default gadgetSlice.reducer;

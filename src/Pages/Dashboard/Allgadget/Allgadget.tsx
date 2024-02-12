@@ -6,7 +6,11 @@ import Opendrawer from "../../AllGadget/Opendrawer";
 import { useAppDispatch, useAppSelector } from "../../../Redux/hook";
 import { addProductId } from "../../../Redux/Feature/BulkDelete/BulkDeleteSlice";
 import DuplicateProduct from "./DuplicateProduct";
-
+interface ifeature {
+    feature: {
+        processore: string
+    }
+}
 
 
 const Allgadget = () => {
@@ -28,7 +32,7 @@ const Allgadget = () => {
 
 
     const { productId } = useAppSelector(state => state.productsId)
-    const { priceRange, status, brand, modelNumber, category, os, connectivity } = useAppSelector(state => state.product);
+    const { priceRange, status, brand, modelNumber, category, os, connectivity, power, feature } = useAppSelector(state => state.product);
     const [searchQuery, setSearchQuery] = useState('');
 
     // console.log(brand, status, modelNumber);
@@ -37,7 +41,7 @@ const Allgadget = () => {
     const datas = data?.filter((item: ILaptop) => item.status === true);
 
     let productsData = datas;
-    // console.log(productsData);
+    // console.log(feature);
 
 
     if (isLoading) {
@@ -81,6 +85,18 @@ const Allgadget = () => {
                 item?.connectivity?.some(conn => conn.toLowerCase().includes(connectivity.toLowerCase()))
         );
     }
+    else if (power) {
+        productsData = datas?.filter(
+            (item: {powerSource : string }) => 
+            item.powerSource.toLowerCase().includes(power.toLocaleLowerCase())
+        );
+    }
+    else if (feature) {
+        productsData = datas?.filter(
+            (item: {features:{processor : string} }) => 
+            item?.features?.processor?.toLowerCase().includes(feature.toLocaleLowerCase())
+        );
+    }
     else {
         productsData = datas;
     }
@@ -102,7 +118,7 @@ const Allgadget = () => {
 
     const handleDelete = (id: string) => {
         console.log(id);
-        // gadgetDelete(id);
+        gadgetDelete(id);
 
     }
 
@@ -114,7 +130,7 @@ const Allgadget = () => {
     }
 
 
-    const handleBulkDelete =(ids: string[]): void=> {
+    const handleBulkDelete = (ids: string[]): void => {
         ids.map(item => {
             console.log(item)
             gadgetDelete(item)

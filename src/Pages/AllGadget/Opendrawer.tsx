@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../Redux/hook";
-import { searchByBrand, searchBymodelNumber, searchbyCategory, searchbyConnectivity, searchbyOS, setPriceRange, toggleState } from "../../Redux/Feature/GadgetCollection/gadgetSlice";
+import { searchByBrand, searchBymodelNumber, searchbyCategory, searchbyConnectivity, searchbyFeature, searchbyOS, searchbyPower, setPriceRange, toggleState } from "../../Redux/Feature/GadgetCollection/gadgetSlice";
 
 import { useForm, SubmitHandler } from "react-hook-form"
 
@@ -27,12 +27,27 @@ enum ConnectivityEnum {
     HDMI = "HDMI"
 
 }
+enum powerEnum {
+    Battery = "Battery",
+    PlugIn = "PlugIn"
+
+}
+enum featureEnum {
+    AMDRyzen9 = "AMD Ryzen 9",
+    AMDRyzen7 = "AMD Ryzen 7",
+    Inteli7 = "Intel i7",
+    Inteli9 = "Intel i9",
+    AppleM1 = "Apple M1"
+
+}
 
 interface IFormInput {
 
     gender: CategoryEnum;
-    os: OsEnum
-    connectivity: ConnectivityEnum
+    os: OsEnum;
+    connectivity: ConnectivityEnum;
+    power: powerEnum;
+    feature: featureEnum
 }
 
 
@@ -88,6 +103,17 @@ const Opendrawer = () => {
     const handleConnectivity: SubmitHandler<IFormInput> = (data) => {
 
         dispatch(searchbyConnectivity(data.connectivity))
+    }
+
+
+    const handlePower: SubmitHandler<IFormInput> = (data) => {
+        // console.log(data.power);
+        dispatch(searchbyPower(data.power))
+    }
+
+    const handleFeature: SubmitHandler<IFormInput> = (data) => {
+        console.log(data.feature);
+        dispatch(searchbyFeature(data.feature))
     }
 
 
@@ -188,7 +214,7 @@ const Opendrawer = () => {
 
                         <form onSubmit={handleSubmit(handleConnectivity)} className="w-full mb-10">
 
-                            <label className="font-bold">Search By Operating System</label><br />
+                            <label className="font-bold">Search By Connectivit</label><br />
                             <select {...register("connectivity")} className="w-3/5 h-12 rounded-lg border-primary border-[1px]">
                                 <option value="WiFi">WiFi</option>
                                 <option value="Ethernet">Ethernet</option>
@@ -202,6 +228,36 @@ const Opendrawer = () => {
                             </select>
                             <input type="submit" value="Search" className="text-[16px] m-2 btn btn-primary btn-sm" />
                         </form>
+
+
+                        <form onSubmit={handleSubmit(handlePower)} className="w-full mb-10">
+
+                            <label className="font-bold">Search By Power Source</label><br />
+                            <select {...register("power")} className="w-3/5 h-12 rounded-lg border-primary border-[1px]">
+                                <option value="Battery">Battery</option>
+                                <option value="PlugIn">PlugIn</option>
+
+
+
+                            </select>
+                            <input type="submit" value="Search" className="text-[16px] m-2 btn btn-primary btn-sm" />
+                        </form>
+                        <form onSubmit={handleSubmit(handleFeature)} className="w-full mb-10">
+
+                            <label className="font-bold">Search By Features(Processore)</label><br />
+                            <select {...register("feature")} className="w-3/5 h-12 rounded-lg border-primary border-[1px]">
+                                <option value="AMD Ryzen 9">AMD Ryzen 9</option>
+                                <option value="AMD Ryzen 7">AMD Ryzen 7</option>
+                                <option value="Intel i7">Intel i7</option>
+                                <option value="Intel i9">Intel i9</option>
+                                <option value="Apple M1">Apple M1</option>
+
+
+
+                            </select>
+                            <input type="submit" value="Search" className="text-[16px] m-2 btn btn-primary btn-sm" />
+                        </form>
+
 
 
                     </ul>

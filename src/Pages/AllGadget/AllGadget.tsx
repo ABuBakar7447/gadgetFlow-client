@@ -12,7 +12,7 @@ const AllGadget = () => {
     const { data, isLoading } = useGetAllGedgetQuery('', { refetchOnMountOrArgChange: true, pollingInterval: 30000 });
 
 
-    const { priceRange, status, brand, modelNumber,category,os, connectivity } = useAppSelector(state => state.product);
+    const { priceRange, status, brand, modelNumber,category,os, connectivity,power,feature } = useAppSelector(state => state.product);
     const [searchQuery, setSearchQuery] = useState('');
 
     // console.log(brand, status, modelNumber);
@@ -64,6 +64,18 @@ const AllGadget = () => {
         productsData = datas?.filter(
             (item: { connectivity: string[] }) =>
                 item?.connectivity?.some(conn => conn.toLowerCase().includes(connectivity.toLowerCase()))
+        );
+    }
+    else if (power) {
+        productsData = datas?.filter(
+            (item: {powerSource : string }) => 
+            item.powerSource.toLowerCase().includes(power.toLocaleLowerCase())
+        );
+    }
+    else if (feature) {
+        productsData = datas?.filter(
+            (item: {features:{processor : string} }) => 
+            item?.features?.processor?.toLowerCase().includes(feature.toLocaleLowerCase())
         );
     }
     else {
