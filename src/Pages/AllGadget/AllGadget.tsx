@@ -5,6 +5,7 @@ import Opendrawer from "./Opendrawer";
 import { useAppSelector } from "../../Redux/hook";
 import { ILaptop } from "../../Globaltypes/globaltypes";
 import { useState } from "react";
+import imgpic from '../../assets/offer img.jpg'
 
 
 const AllGadget = () => {
@@ -99,12 +100,12 @@ const AllGadget = () => {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5">
-            <div className="col-span-3">
+            <div className="lg:col-span-3 col-span-12 p-5">
 
-                Hello
+            <img src={imgpic} alt="Shoes" className="rounded-xl h-[600px] mx-auto lg:mt-28" />
             </div>
 
-            <div className="col-span-9">
+            <div className="lg:col-span-9 col-span-12">
                 <div className="flex justify-center items-center my-8 px-5">
                     <div className="lg:w-3/4 w-1/2 mr-2">
                         {/* // searchBar// */}
