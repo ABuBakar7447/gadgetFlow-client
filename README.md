@@ -27,3 +27,9 @@ in the dashboard, the admin can
 
 For this project, I have used Vite, React, Redux( redux toolkit), Typescript, Tailwind CSS, Daisy Ui CSS library, Firebase, Axios, JWT
 For the backend: MongoDB, Express Js, JWT, Vercel.
+
+
+**Intallation Process: To install this project you just have to clone the project and run npm i in terminal. For your personal database and backend you can create or clone my server side link from github and add your database.
+
+**Project Name: GadgetFlow
+**Project Link: https://gadgetflow-347ef.web.app/allgadget
