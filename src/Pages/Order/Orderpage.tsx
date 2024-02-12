@@ -141,7 +141,7 @@ const Orderpage = () => {
 
 
                     <div className="form-control mt-6">
-                        <input type="submit" value="Login" className="btn bg-[#D1A054] text-white font-bold hover:bg-slate-300 hover:text-black border-0" />
+                        <input type="submit" value="Submit" className="btn bg-[#D1A054] text-white font-bold hover:bg-slate-300 hover:text-black border-0" />
                     </div>
                 </form>
             </div>

@@ -6,11 +6,7 @@ import Opendrawer from "../../AllGadget/Opendrawer";
 import { useAppDispatch, useAppSelector } from "../../../Redux/hook";
 import { addProductId } from "../../../Redux/Feature/BulkDelete/BulkDeleteSlice";
 import DuplicateProduct from "./DuplicateProduct";
-interface ifeature {
-    feature: {
-        processore: string
-    }
-}
+
 
 
 const Allgadget = () => {
