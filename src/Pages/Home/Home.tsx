@@ -1,4 +1,8 @@
 import { useGetAllGedgetQuery } from "../../Redux/api";
+import Banner from "./Banner/Banner";
+import Contact from "./Contact/Contact";
+import Product from "./Product/Product";
+import Service from "./Service/Service";
 
 
 const Home = () => {
@@ -12,7 +16,10 @@ const Home = () => {
     console.log(data)
     return (
         <div>
-            This is home
+            <Banner></Banner>
+            <Service></Service>
+            <Product></Product>
+            <Contact></Contact>
         </div>
     );
 };

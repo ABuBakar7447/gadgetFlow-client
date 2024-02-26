@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { ILaptop } from "../../Globaltypes/globaltypes";
 import { addProduct } from "../../Redux/Feature/CartGadget/CartGadgetSlice";
 
@@ -11,6 +12,17 @@ const GadgetCard = ({ gadget }: IProps) => {
 
     const { name, brand, modelNumber, operatingSystem, img } = gadget;
     const dispatch = useAppDispatch();
+
+    const handleAdd = (gadget:any) =>{
+        dispatch(addProduct(gadget));
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
     
     return (
         <div>
@@ -20,7 +32,7 @@ const GadgetCard = ({ gadget }: IProps) => {
                     <h2 className="card-title">Name</h2>
                     <p>{name} {brand} {modelNumber} {operatingSystem} {gadget.features.RAM} {gadget.features.storageCapacity}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary" onClick={() => dispatch(addProduct(gadget))}>Add Product</button>
+                        <button className="btn btn-primary" onClick={() => handleAdd(gadget)}>Add Product</button>
                     </div>
                 </div>
             </div>
