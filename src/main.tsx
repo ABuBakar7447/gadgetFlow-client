@@ -11,7 +11,7 @@ import 'react-day-picker/dist/style.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <div className='max-w-screen-xl mx-auto bg-white'>
+    <div className='max-w-screen-[1600px] max-w-sc mx-auto bg-white'>
       <Provider store={store}>
         <AuthProvider>
           <RouterProvider router={router} />

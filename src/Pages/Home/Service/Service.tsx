@@ -1,3 +1,4 @@
+import SectionTitle from "../../../Component/SectionTitle/SectionTitle";
 
 interface IService {
     id: number;
@@ -35,12 +36,13 @@ const Service = () => {
         }
     ]
     return (
-        <div className="py-12">
-            <div className="grid grid-cols-4 gap-5 p-5">
+        <div className="py-12 w-11/12 mx-auto">
+            <SectionTitle text="Our Services"></SectionTitle>
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-5 p-5">
                 {
                     services?.map((service: IService) =>
-                        <div key={service.id} className="w-[300px] h-[300px] flex flex-col justify-center items-center border-4">
-                            <img src={service.pic} alt="" className="w-24 h-24 object-cover"/>
+                        <div key={service.id} className="w-[300px] h-[300px] mx-auto flex flex-col justify-center items-center border-4">
+                            <img src={service.pic} alt="" className=" w-20 h-20 object-cover"/>
                             <p className="text-black text-[20px] font-semibold text-center mt-10">
                                 {service.name}
                             </p>

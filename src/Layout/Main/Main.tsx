@@ -6,7 +6,7 @@ import Footerr from "../../Shared/Footerr/Footerr";
 
 const Main = () => {
     return (
-        <div className="mx-auto container">
+        <div className="">
             <Navbar></Navbar>
             <Outlet></Outlet>
             <Footerr></Footerr>

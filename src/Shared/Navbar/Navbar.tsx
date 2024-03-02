@@ -5,7 +5,7 @@ import { Icon } from '@iconify/react';
 import CartDrawer from "../../Pages/CartGadget/CartDrawer";
 
 const Navbar = () => {
-    const { user, logOut }:any = useContext(AuthContext);
+    const { user, logOut }: any = useContext(AuthContext);
 
 
     const hangleLogOut = () => {
@@ -69,11 +69,17 @@ const Navbar = () => {
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             {navoptions}
-                            
+
 
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">Gadget Flow</a>
+                    <a className="btn btn-ghost text-xl">Gadget Flow
+                        <lord-icon
+                            src="https://cdn.lordicon.com/kjtalhau.json"
+                            trigger="hover"
+                            style={{width:"50px", height:"50px"}}>
+                        </lord-icon>
+                    </a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
