@@ -13,7 +13,9 @@ const CartGadget = () => {
             <div>
                 <button className="btn btn-lg">Hello</button>
             </div>
-            {product?.map(item => <CartGadgetCard key={item._id} item={item}></CartGadgetCard>)}
+            <div className="my-5">
+                {product?.map(item => <CartGadgetCard key={item._id} item={item}></CartGadgetCard>)}
+            </div>
 
 
             <div>

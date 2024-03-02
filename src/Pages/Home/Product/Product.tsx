@@ -16,7 +16,7 @@ const Product = () => {
     return (
         <div className="p-5 m-5 flex flex-col justify-center items-center mx-auto">
             <SectionTitle text="Our Popular Products"></SectionTitle>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 w-11/12 bg-slate-200 p-16">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 w-11/12 bg-slate-200 lg:p-16">
                 {
                     data?.slice(0, 3).map((item: ILaptop) => <ProductCard key={item._id} item={item}></ProductCard>)
                 }

@@ -25,9 +25,9 @@ const OurFacility = () => {
     return (
         <div className="w-3/4 mx-auto my-24">
             <SectionTitle text="Shop safely with GadgetFlow"></SectionTitle>
-            <div className="grid grid-cols-3 gap-10 rounded-xl bg-slate-100">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 rounded-xl bg-slate-100">
                 {facility?.map(item =>
-                    <div className="w-[350px] h-[300px] mx-auto p-10 flex flex-col justify-center items-center" key={item.id}>
+                    <div className="w-[300px] h-[300px] mx-auto p-10 flex flex-col justify-center items-center" key={item.id}>
                         <lord-icon
                             src={item.icon}
                             trigger="hover"

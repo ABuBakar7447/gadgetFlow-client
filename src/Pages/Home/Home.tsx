@@ -7,7 +7,7 @@ import Service from "./Service/Service";
 
 
 const Home = () => {
-    const {data, isLoading} = useGetAllGedgetQuery('')
+    const {isLoading} = useGetAllGedgetQuery('')
 
     if(isLoading){
         <div className="h-96 w-1/2 mx-auto">

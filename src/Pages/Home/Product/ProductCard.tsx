@@ -25,7 +25,7 @@ const ProductCard = ({ item }: IProps) => {
     return (
         <div>
 
-            <div className="card w-96 mx-auto bg-slate-50 hover:bg-slate-300 shadow-inner">
+            <div className="card lg:w-96 w-80 mx-auto bg-slate-50 hover:bg-slate-300 shadow-inner">
                 <figure className="px-10 pt-10">
                     <img src={item.img} alt="Shoes" className="rounded-xl w-full h-[250px] object-cover transitions" />
                 </figure>
