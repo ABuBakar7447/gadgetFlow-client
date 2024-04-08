@@ -62,7 +62,7 @@ const CartGadgetCard = ({ item }: IProps) => {
     }
 
     return (
-        <div className="grid grid-cols-3 gap-5 my-5">
+        <div className="grid grid-cols-3 gap-5 my-5 text-black">
             <div>
                 <img src={item.img} alt="" className="w-[100px], h-[100px] object-cover" />
             </div>
@@ -73,13 +73,15 @@ const CartGadgetCard = ({ item }: IProps) => {
                 <p>Quantity: {item.addedquantity}</p>
             </div>
             <div className="flex justify-center items-center gap-2">
-                <button className="btn bg-white rounded-none px-5 hover:btn-ghost btn-sm text-[20px] font-bold text-black" onClick={() => dispatch(addProduct(item))}>
+                <button className="btn btn-outline btn-accent btn-sm rounded-lg text-[20px] font-bold text-black" onClick={() => dispatch(addProduct(item))}>
                     +
                 </button>
-                <button className="btn bg-white rounded-none px-5 hover:btn-ghost btn-sm text-[20px] font-bold text-black" onClick={() => dispatch(deleteProduct(item))}>
+
+                <button className="btn btn-outline btn-warning btn-sm rounded-lg text-[20px] font-bold text-black" onClick={() => dispatch(deleteProduct(item))}>
                     -
                 </button>
-                <button className="btn bg-red-600 rounded-none px-5 hover:btn-ghost btn-sm text-[16px] font-bold text-black" onClick={() =>handleTotalDelte(item)}>
+
+                <button className="btn btn-outline btn-error btn-sm rounded-lg text-[16px] font-bold text-black" onClick={() =>handleTotalDelte(item)}>
                     X
                 </button>
             </div>

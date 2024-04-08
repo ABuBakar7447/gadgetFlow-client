@@ -100,7 +100,7 @@ const AllGadget = () => {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5">
-            <div className="lg:col-span-3 col-span-12 p-5">
+            <div className="lg:col-span-3 col-span-12 m-2">
 
             <img src={imgpic} alt="Shoes" className="rounded-xl h-[600px] mx-auto lg:mt-28" />
             </div>
@@ -121,7 +121,7 @@ const AllGadget = () => {
                 </div>
 
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 place-items-center">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 place-items-center my-5">
                     {
                         filteredData?.map((gadget: any) => <GadgetCard key={gadget._id} gadget={gadget}></GadgetCard>)
                     }

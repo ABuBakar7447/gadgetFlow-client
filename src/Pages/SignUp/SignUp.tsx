@@ -18,7 +18,7 @@ const SignUp = () => {
     const [userdata] = useUserdataMutation()
 
     const {createUser, updateUserProfile}:any = useContext(AuthContext);
-    const { register, handleSubmit } = useForm<IFormInput>()
+    const { register, handleSubmit, formState:{errors} } = useForm<IFormInput>()
 
     const navigate = useNavigate()
 
@@ -56,13 +56,14 @@ const SignUp = () => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body w-11/12 lg:w-1/2 mx-auto">
 
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text text-gray-700">Name</span>
                     </label>
                     <input placeholder="Name" className="bg-white input input-bordered" {...register("name", { required: true, maxLength: 20 })} />
+                    {errors.name?.type === 'required' && <p className="text-red-600 font-bold" role="alert">Name is required</p>}
 
                 </div>
 
@@ -71,6 +72,7 @@ const SignUp = () => {
                         <span className="label-text text-gray-700">Email</span>
                     </label>
                     <input type="email" placeholder="email" className="bg-white input input-bordered" {...register("email", { required: true, maxLength: 20 })} />
+                    {errors.email?.type === 'required' && <p className="text-red-600 font-bold" role="alert">Email is required</p>}
 
                 </div>
 
@@ -79,7 +81,12 @@ const SignUp = () => {
                     <label className="label">
                         <span className="label-text text-gray-700">Password</span>
                     </label>
-                    <input type="password" placeholder="password" className="bg-white input input-bordered" {...register("password", { required: true, maxLength: 20 })} />
+                    <input type="password" placeholder="password" className="bg-white input input-bordered" {...register("password", { required: true, minLength:6, maxLength: 20 })} />
+
+                    
+                    {errors.password?.type === 'required' && <p className="text-red-600 font-bold" role="alert">Password is required</p>}
+                    {errors.password?.type === 'minLength' && <p className="text-red-600 font-bold" role="alert">Password is required minimum 6 length</p>}
+                    {errors.password?.type === 'maxLength' && <p className="text-red-600 font-bold" role="alert">Password is required maximum 20 digit</p>}
                 </div>
 
 

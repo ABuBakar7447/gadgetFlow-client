@@ -18,8 +18,7 @@ const Navbar = () => {
         <>
             <li><Link to='/'>Home</Link></li>
             <li><Link to='/allgadget'>AllGadget</Link></li>
-            <li><Link to='' className="lg:hidden sm:display">Cart</Link></li>
-
+            
 
             <li><Link to='/dashboard/allgadget'>Dashboard</Link></li>
 
@@ -51,17 +50,19 @@ const Navbar = () => {
                         <>
                             {/* <span className="icon-[iconamoon--profile-thin] text-white"></span> */}
 
-                            <Icon className="w-7 h-7 mt-1" icon="iconamoon:profile-fill" />
+                            <Icon className="w-7 h-7" icon="iconamoon:profile-fill" />
                         </>
                     }
 
                 </Link>
             </li>
+            <li><CartDrawer></CartDrawer></li>
+
 
         </>
     return (
         <div>
-            <div className="navbar bg-base-100 z-20">
+            <div className="navbar bg-base-200 z-20 font-bold">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -69,7 +70,6 @@ const Navbar = () => {
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             {navoptions}
-
 
                         </ul>
                     </div>
@@ -82,9 +82,8 @@ const Navbar = () => {
                     </a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
+                    <ul className="menu menu-horizontal px-1 text-[16px]">
                         {navoptions}
-                        <CartDrawer></CartDrawer>
                     </ul>
                 </div>
                 <div className="navbar-end">

@@ -9,11 +9,9 @@ const CartGadget = () => {
     const { product } = useAppSelector(state => state.cartgadget)
 
     return (
-        <div>
-            <div>
-                <button className="btn btn-lg">Hello</button>
-            </div>
-            <div className="my-5">
+        <div className="">
+            
+            <div className="m-5">
                 {product?.map(item => <CartGadgetCard key={item._id} item={item}></CartGadgetCard>)}
             </div>
 
