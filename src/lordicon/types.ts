@@ -12,6 +12,7 @@ type LordIconProps = {
   src?: string;
   trigger?: LordIconTrigger;
   colors?: string;
+  class?:string;
   delay?: string | number;
 };
 

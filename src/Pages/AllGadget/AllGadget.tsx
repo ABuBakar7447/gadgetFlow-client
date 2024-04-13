@@ -6,6 +6,7 @@ import { useAppSelector } from "../../Redux/hook";
 import { ILaptop } from "../../Globaltypes/globaltypes";
 import { useState } from "react";
 import imgpic from '../../assets/offer img.jpg'
+import { Flex, Spin } from "antd";
 
 
 const AllGadget = () => {
@@ -27,10 +28,12 @@ const AllGadget = () => {
 
     if (isLoading) {
         return (
-            <div>
-                ....Loading..Please Wait.
+            <div className="w-1/2 min-h-screen mx-auto h-1/2 flex justify-center items-center">
+                <Flex align="center" gap="middle">
+                    <Spin size="large"/>
+                </Flex>
             </div>
-        );
+        )
     }
 
 
@@ -99,7 +102,7 @@ const AllGadget = () => {
 
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-2">
             <div className="lg:col-span-3 col-span-12 m-2">
 
             <img src={imgpic} alt="Shoes" className="rounded-xl h-[600px] mx-auto lg:mt-28" />

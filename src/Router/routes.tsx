@@ -10,6 +10,7 @@ import AllGadget from "../Pages/AllGadget/AllGadget";
 import CartGadget from "../Pages/CartGadget/CartGadget";
 import Orderpage from "../Pages/Order/Orderpage";
 import PrivateRoute from "./PrivateRoute";
+import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 
 export const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
             {
                 path:'/allgadget',
                 element:<AllGadget></AllGadget>
+            },
+            {
+                path:'/details/:id',
+                element:<ProductDetails></ProductDetails>
             },
             {
                 path:'/cart',

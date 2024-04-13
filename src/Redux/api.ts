@@ -10,6 +10,10 @@ export const gadgetApi = createApi({
             query:()=>'gadgetCollection',
             providesTags:['gadgetData'],
         }),
+        getSingleGadgetData: builder.query({
+            query:(id)=>`details/${id}`,
+            providesTags:['gadgetData'],
+        }),
         gadgetDelete: builder.mutation({
             query: (id)=>({
                 url: `gadgetdelete/${id}`,
@@ -65,4 +69,4 @@ export const gadgetApi = createApi({
 })
 
 
-export const {useGetAllGedgetQuery, useGadgetDeleteMutation, useGadgetDataUpdataMutation, useGadgetDataAddMutation, useGadgetquantityUpadateMutation, useUserdataMutation, useSellsdataMutation} = gadgetApi;
+export const {useGetAllGedgetQuery, useGetSingleGadgetDataQuery ,useGadgetDeleteMutation, useGadgetDataUpdataMutation, useGadgetDataAddMutation, useGadgetquantityUpadateMutation, useUserdataMutation, useSellsdataMutation} = gadgetApi;

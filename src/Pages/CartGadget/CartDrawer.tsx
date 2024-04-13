@@ -31,7 +31,7 @@ const CartDrawer = () => {
                 </lord-icon>
                 <p>{product ? product.length : ''}</p>
             </div>
-            <Drawer title="Cart Items" placement={'left'} onClose={onClose} open={open} width={420}>
+            <Drawer title="Cart Items" placement={'right'} onClose={onClose} open={open} width={420}>
                 <CartGadget></CartGadget>
             </Drawer>
         </div>
