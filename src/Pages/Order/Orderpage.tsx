@@ -6,12 +6,13 @@ import { AuthContext } from "../../Providers/AuthProviders";
 import { useGadgetquantityUpadateMutation, useSellsdataMutation } from "../../Redux/api";
 import { DayPicker } from 'react-day-picker';
 import { format } from 'date-fns';
+import Swal from "sweetalert2";
 
 
 interface IFormInput {
     name: string
     email: string
-    
+
 
 }
 
@@ -58,15 +59,24 @@ const Orderpage = () => {
         })
 
         const newdata = {
-            data:{
-                product:product,
-                name:data.name,
-                email:data.email,
-                date:selected
+            data: {
+                product: product,
+                name: data.name,
+                email: data.email,
+                date: selected
             }
         }
         console.log(newdata);
         sellsdata(newdata);
+
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        
 
 
 
@@ -74,14 +84,16 @@ const Orderpage = () => {
     return (
         <div>
             <div>
-                <p className="text-center text-5xl font-serif text-yellow-500">
-                    Product Order List
+                <p className="text-center text-4xl font-serif text-black">
+                    Order Page
                 </p>
-                <div>
-                    <div className="overflow-x-auto bg-gray-600 text-white">
-                        <table className="table">
+                <div className="grid grid-cols-2">
+
+                    {/* product table part */}
+                    <div className=" bg-white text-black col-span-1 p-10">
+                        <table className="table border-2 rounded-full">
                             {/* head */}
-                            <thead className="text-white text-[16px]">
+                            <thead className="text-black text-[16px]">
                                 <tr>
                                     <th>
                                         #
@@ -90,14 +102,14 @@ const Orderpage = () => {
                                     <th>Brand & Model</th>
                                     <th>Quantity</th>
                                     <th>Price</th>
-                                    <th></th>
+
                                 </tr>
                             </thead>
                             {
                                 product.map((item, index) =>
 
 
-                                    <tbody>
+                                    <tbody className="">
                                         <ProductTable key={item._id} item={item} index={index}></ProductTable>
                                     </tbody>
                                 )
@@ -106,45 +118,52 @@ const Orderpage = () => {
                         </table>
                     </div>
 
+
+
+                    {/* form part */}
+                    <div className="col-span-1">
+                        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+
+                            <div className="flex gap-2">
+                                <div className="form-control w-1/2">
+                                    <label className="label">
+                                        <span className="label-text text-gray-700">Name</span>
+                                    </label>
+                                    <input placeholder="Name" className="bg-white input input-bordered" {...register("name", { required: true, maxLength: 20 })} />
+
+                                </div>
+
+                                <div className="form-control w-1/2">
+                                    <label className="label">
+                                        <span className="label-text text-gray-700">Email</span>
+                                    </label>
+                                    <input type="email" defaultValue={user?.email} className="bg-white input input-bordered" {...register("email", { required: true, maxLength: 20 })} />
+
+                                </div>
+                            </div>
+
+
+                            <DayPicker
+                                mode="single"
+                                selected={selected}
+                                onDayClick={setSelected}
+                                className="text-black"
+                            />
+                            <p className="text-black">You picked <span className="font-bold">{format(selected, 'PP')}</span>.</p>
+
+
+
+                            <div className="form-control mt-6 w-1/4">
+                                <input type="submit" value="Order" className="btn btn-success text-white font-bold hover:bg-slate-300 hover:text-black border-0" />
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
             </div>
 
 
-            <div>
-                <form onSubmit={handleSubmit(onSubmit)} className="card-body">
 
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text text-gray-700">Name</span>
-                        </label>
-                        <input placeholder="Name" className="bg-white input input-bordered" {...register("name", { required: true, maxLength: 20 })} />
-
-                    </div>
-
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text text-gray-700">Email</span>
-                        </label>
-                        <input type="email" defaultValue={user?.email} className="bg-white input input-bordered" {...register("email", { required: true, maxLength: 20 })}  />
-
-                    </div>
-
-
-                    <DayPicker
-                        mode="single"
-                        selected={selected}
-                        onDayClick={setSelected}
-                    className="text-black"  
-                    />
-                    <p className="text-black">You picked {format(selected, 'PP')}.</p>
-
-
-
-                    <div className="form-control mt-6">
-                        <input type="submit" value="Submit" className="btn bg-[#D1A054] text-white font-bold hover:bg-slate-300 hover:text-black border-0" />
-                    </div>
-                </form>
-            </div>
         </div>
     );
 };

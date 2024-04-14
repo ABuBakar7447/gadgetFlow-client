@@ -3,6 +3,6 @@
 }
 
 .icon:hover .current-color {
-    color: #03C988;
+    color: white;
     transition: 0.3s;
 }

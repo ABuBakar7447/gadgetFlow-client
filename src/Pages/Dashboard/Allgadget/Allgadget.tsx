@@ -6,6 +6,7 @@ import Opendrawer from "../../AllGadget/Opendrawer";
 import { useAppDispatch, useAppSelector } from "../../../Redux/hook";
 import { addProductId } from "../../../Redux/Feature/BulkDelete/BulkDeleteSlice";
 import DuplicateProduct from "./DuplicateProduct";
+import { Flex, Spin } from "antd";
 
 
 
@@ -40,13 +41,8 @@ const Allgadget = () => {
     // console.log(feature);
 
 
-    if (isLoading) {
-        return (
-            <div>
-                ....Loading..Please Wait.
-            </div>
-        );
-    }
+    
+
 
 
     if (status) {
