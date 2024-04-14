@@ -41,7 +41,16 @@ const Allgadget = () => {
     // console.log(feature);
 
 
-    
+    if (isLoading) {
+        return (
+            <div className="w-1/2 min-h-screen mx-auto h-1/2 flex justify-center items-center">
+                <Flex align="center" gap="middle">
+                    <Spin size="large"/>
+                </Flex>
+            </div>
+        )
+    }
+
 
 
 
