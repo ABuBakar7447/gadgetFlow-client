@@ -23,9 +23,9 @@ const OurFacility = () => {
         }
     ]
     return (
-        <div className="w-3/4 mx-auto my-24">
+        <div className="w-3/4 mx-auto my-24 ">
             <SectionTitle text="Shop safely with GadgetFlow"></SectionTitle>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 rounded-xl bg-slate-100">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 rounded-xl bg-[#101522]">
                 {facility?.map(item =>
                     <div className="w-[300px] h-[300px] mx-auto p-10 flex flex-col justify-center items-center" key={item.id}>
                         <lord-icon
@@ -33,8 +33,8 @@ const OurFacility = () => {
                             trigger="hover"
                             style={{ width: "100px", height: "150px" }}>
                         </lord-icon>
-                        <h1 className="text-xl text-black font-bold">{item.title}</h1>
-                        <p className="text-center text-black">{item.details}</p>
+                        <h1 className="text-xl  text-white font-bold">{item.title}</h1>
+                        <p className="text-center  text-white">{item.details}</p>
                     </div>
 
                 )}

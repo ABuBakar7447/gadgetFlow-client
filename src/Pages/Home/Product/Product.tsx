@@ -16,13 +16,14 @@ const Product = () => {
     return (
         <div className="p-5 m-5 flex flex-col justify-center items-center mx-auto">
             <SectionTitle text="Our Popular Products"></SectionTitle>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 w-11/12 bg-slate-200 lg:p-16">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-5 w-11/12 rounded-xl bg-[#101522] lg:p-16">
                 {
-                    data?.slice(0, 3).map((item: ILaptop) => <ProductCard key={item._id} item={item}></ProductCard>)
+                    data?.slice(0, 4).map((item: ILaptop) => <ProductCard key={item._id} item={item}></ProductCard>)
                 }
             </div>
 
-            <Link to='/allgadget'><button className="btn btn-outline btn-primary mt-5 transitions">See All</button></Link>
+            <Link to='/allgadget'><button className="btn btn-outline bg-[#00C2FF] hover:bg-[#00F0FF] text-[#0A0F1C]
+ mt-5 transitions">See All</button></Link>
         </div>
     );
 };
