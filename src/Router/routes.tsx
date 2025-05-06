@@ -11,6 +11,9 @@ import CartGadget from "../Pages/CartGadget/CartGadget";
 import Orderpage from "../Pages/Order/Orderpage";
 import PrivateRoute from "./PrivateRoute";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import ContactUs from "../Pages/ContactUs/ContactUs";
+import Blog from "../Pages/Blog/Blog";
 
 export const router = createBrowserRouter([
     {
@@ -24,6 +27,18 @@ export const router = createBrowserRouter([
             {
                 path:'/allgadget',
                 element:<AllGadget></AllGadget>
+            },
+            {
+                path:'/aboutus',
+                element:<AboutUs></AboutUs>
+            },
+            {
+                path:'/blogs',
+                element:<Blog></Blog>
+            },
+            {
+                path:'/contactus',
+                element:<ContactUs></ContactUs>
             },
             {
                 path:'/details/:id',

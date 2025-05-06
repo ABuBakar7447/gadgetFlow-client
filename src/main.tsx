@@ -7,7 +7,9 @@ import AuthProvider from './Providers/AuthProviders.tsx'
 import { Provider } from 'react-redux'
 import { store } from './Redux/store.tsx'
 import 'react-day-picker/dist/style.css';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

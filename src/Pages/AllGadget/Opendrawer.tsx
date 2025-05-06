@@ -4,6 +4,9 @@ import { searchByBrand, searchBymodelNumber, searchbyCategory, searchbyConnectiv
 
 import { useForm, SubmitHandler } from "react-hook-form"
 
+
+
+
 enum CategoryEnum {
     Laptop = "Laptop",
     Mobile = "Mobile",
@@ -118,8 +121,8 @@ const Opendrawer = () => {
 
 
     return (
-        <div>
-            <div className="drawer z-10">
+        <div >
+            <div className="drawer z-10 ">
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                     {/* Page content here */}
@@ -129,7 +132,7 @@ const Opendrawer = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+                    <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content pt-[84px]">
 
                         {/* Product In Stock with Price Change */}
                         <div className="form-control" onClick={() => dispatch(toggleState())}>

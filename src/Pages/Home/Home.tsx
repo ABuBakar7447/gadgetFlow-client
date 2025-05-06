@@ -6,6 +6,7 @@ import LimitedTimeOffers from "./LimitedOffer/LimitedTimeOffers";
 import OurFacility from "./OurFacility/OurFacility";
 import Product from "./Product/Product";
 import Service from "./Service/Service";
+import TrustedBrands from "./TrustedBrands/TrustedBrands";
 
 const Home = () => {
 
@@ -64,6 +65,10 @@ const Home = () => {
       <OurFacility></OurFacility>
       
       <CustomerReview reviews={reviews}></CustomerReview>
+      
+
+      <TrustedBrands></TrustedBrands>
+
       <Contact></Contact>
       
 

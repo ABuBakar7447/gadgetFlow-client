@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { Flame, ShoppingCart, BadgePercent } from "lucide-react";
 import { useGetAllGedgetQuery } from "../../../Redux/api";
+import { useAppDispatch } from "../../../Redux/hook";
+import { addProduct } from "../../../Redux/Feature/CartGadget/CartGadgetSlice";
+import Swal from "sweetalert2";
 
 const LimitedTimeOffers = () => {
   const { data: product, isLoading } = useGetAllGedgetQuery("");
+  const dispatch = useAppDispatch()
 
   if (isLoading) {
     <div className="h-96 w-1/2 mx-auto">
@@ -13,7 +17,7 @@ const LimitedTimeOffers = () => {
   const offerProducts = product?.filter((product: any) => product.id % 2 !== 0);
 
   const calculateTimeLeft = () => {
-    const difference = +new Date("2025-05-10T23:59:59") - +new Date();
+    const difference = +new Date("2025-06-10T23:59:59") - +new Date();
     let timeLeft: { [key: string]: number } = {};
 
     if (difference > 0) {
@@ -37,7 +41,19 @@ const LimitedTimeOffers = () => {
     return () => clearTimeout(timer);
   });
 
-  //   const product = {
+  const handleAdd = (product: any, discountedPrice:any) => {
+    product = { ...product, price: discountedPrice };
+    console.log(product);
+    
+      dispatch(addProduct(product));
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    };//   const product = {
   //     img: "https://i.ibb.co/5nz0bTK/electronic-device-balancing-concept.jpg",
   //     name: "Laptop ABC",
   //     brand: "XYZ Technologies",
@@ -69,11 +85,11 @@ const LimitedTimeOffers = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {offerProducts?.map((product: any) => {
+          {offerProducts?.map((product: any, index:number) => {
             const discountedPrice = (product.price * 0.8).toFixed(2); // 20% off
             return (
               <div
-                key={product.id}
+                key={index}
                 className="card w-full max-w-sm mx-auto bg-[#1C2431] rounded-xl shadow-lg shadow-[#00C2FF33]
 hover:shadow-[#00F0FF66] transition duration-300 hover:scale-[1.02] text-white"
               >
@@ -99,7 +115,7 @@ hover:shadow-[#00F0FF66] transition duration-300 hover:scale-[1.02] text-white"
                       ${product.price.toFixed(2)}
                     </span>
                   </div>
-                  <button className="btn btn-primary btn-sm mt-3 flex items-center gap-2">
+                  <button className="btn btn-primary btn-sm mt-3 flex items-center gap-2" onClick={() => handleAdd(product, discountedPrice)}>
                     <ShoppingCart className="w-4 h-4" />
                     Grab Deal
                   </button>

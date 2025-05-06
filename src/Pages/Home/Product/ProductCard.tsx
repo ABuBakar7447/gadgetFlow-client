@@ -2,40 +2,40 @@ import Swal from "sweetalert2";
 import { ILaptop } from "../../../Globaltypes/globaltypes";
 import { addProduct } from "../../../Redux/Feature/CartGadget/CartGadgetSlice";
 import { useAppDispatch } from "../../../Redux/hook";
-import '../../../Styles/styless.css'
+import "../../../Styles/styless.css";
 import {
-    ShoppingCart,
-    BadgeCheck,
-    Monitor,
-    Cpu,
-    MemoryStick,
-    HardDrive,
-    CalendarDays
-  } from "lucide-react";
+  ShoppingCart,
+  BadgeCheck,
+  Monitor,
+  Cpu,
+  MemoryStick,
+  HardDrive,
+  CalendarDays,
+} from "lucide-react";
 
-  
 interface IProps {
-    item: ILaptop;
-
+  item: ILaptop;
 }
 
 const ProductCard = ({ item }: IProps) => {
-    console.log(item);
-    const dispatch = useAppDispatch();
+  console.log(item);
+  const dispatch = useAppDispatch();
 
-    const handleAdd = (item: any) => {
-        dispatch(addProduct(item));
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Your Product Added To Cart",
-            showConfirmButton: false,
-            timer: 1500
-        });
-    }
-    return (
-        <div className="card w-full max-w-sm mx-auto bg-[#1C2431] rounded-xl shadow-lg shadow-[#00C2FF33]
-hover:shadow-[#00F0FF66] transition duration-300 hover:scale-[1.02] text-white">
+  const handleAdd = (item: any) => {
+    dispatch(addProduct(item));
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Your Product Added To Cart",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
+  return (
+    <div
+      className="card w-full max-w-sm mx-auto bg-[#1C2431] rounded-xl shadow-lg shadow-[#00C2FF33]hover:shadow-[#00F0FF66] 
+       shadow-[#00C2FF33] hover:shadow-[#00F0FF66] transition duration-300 hover:scale-[1.02] text-white"
+    >
       <figure className="px-6 pt-6">
         <img
           src={item.img}
@@ -83,7 +83,7 @@ hover:shadow-[#00F0FF66] transition duration-300 hover:scale-[1.02] text-white">
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default ProductCard;

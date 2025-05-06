@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SectionTitle from "../../../Component/SectionTitle/SectionTitle";
 
 interface IService {
@@ -56,12 +57,15 @@ const Service = () => {
             </h3>
 
             <p className="text-sm h-12">
-              {service.details || "Explore our reliable and expert-level services."}
+              {service.details ||
+                "Explore our reliable and expert-level services."}
             </p>
 
-            <button className="btn btn-sm btn-outline mt-6 hover:scale-105 duration-200 bg-[#00C2FF] hover:bg-[#00F0FF] text-black ">
-              Read More
-            </button>
+            <Link to="/aboutus">
+              <button className="btn btn-sm btn-outline mt-6 hover:scale-105 duration-200 bg-[#00C2FF] hover:bg-[#00F0FF] text-black ">
+                Read More
+              </button>
+            </Link>
           </div>
         ))}
       </div>

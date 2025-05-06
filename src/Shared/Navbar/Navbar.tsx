@@ -18,6 +18,8 @@ const Navbar = () => {
         <>
             <li><Link to='/'>Home</Link></li>
             <li><Link to='/allgadget'>AllGadget</Link></li>
+            <li><Link to='/aboutus'>AboutUs</Link></li>
+            <li><Link to='/blogs'>Blogs</Link></li>
             
 
             <li><Link to='/dashboard/allgadget'>Dashboard</Link></li>
@@ -88,13 +90,13 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 text-[16px]">
+            <ul className="menu menu-horizontal text-[16px]">
                 {navoptions}
             </ul>
         </div>
 
         <div className="navbar-end">
-            <Link to='/contact' className="btn bg-[#00C2FF] hover:bg-[#00F0FF] text-[#0A0F1C] border-none">
+            <Link to='/contactus' className="btn bg-[#00C2FF] hover:bg-[#00F0FF] text-[#0A0F1C] border-none">
                 Contact Us
             </Link>
         </div>
