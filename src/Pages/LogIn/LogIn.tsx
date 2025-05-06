@@ -35,12 +35,12 @@ const LogIn = () => {
     
 
     return (
-        <div>
-            <form  onSubmit={handleSubmit(onSubmit)} className="card-body w-11/12 lg:w-1/2 mx-auto">
+        <div className="pt-[84px] min-h-screen">
+            <form  onSubmit={handleSubmit(onSubmit)} className="card-body w-11/12 lg:w-1/2 mx-auto flex justify-center items-center">
 
-                <div className="form-control">
+                <div className="form-control w-3/4">
                     <label className="label">
-                        <span className="label-text text-gray-700">Email</span>
+                        <span className="label-text text-blue-500">Email</span>
                     </label>
                     <input type="email" placeholder="email" className="bg-white input input-bordered" {...register("email", { required: true, maxLength: 20 })} />
                     {errors.email?.type === 'required' && <p className="text-red-600 font-bold" role="alert">Email is required</p>}
@@ -48,9 +48,9 @@ const LogIn = () => {
                 </div>
 
 
-                <div className="form-control">
+                <div className="form-control w-3/4">
                     <label className="label">
-                        <span className="label-text text-gray-700">Password</span>
+                        <span className="label-text text-blue-500">Password</span>
                     </label>
                     <input type="password" placeholder="password" className="bg-white input input-bordered" {...register("password", { required: true, minLength: 6, maxLength: 20 })} />
 
@@ -61,8 +61,8 @@ const LogIn = () => {
 
                 
 
-                <div className="form-control mt-6">
-                    <input type="submit" value="Login" className="btn bg-[#D1A054] text-white font-bold hover:bg-slate-300 hover:text-black border-0" />
+                <div className="form-control mt-6 w-1/2">
+                    <input type="submit" value="Login" className="btn bg-[#00C2FF] hover:bg-[#00F0FF] text-[#0A0F1C] font-bold  hover:text-black border-0" />
                 </div>
             </form>
         </div>
