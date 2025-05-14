@@ -56,7 +56,7 @@ const ProductDetails = () => {
     });
   };
 
-  const itemsPerPage = 2; // Or however many items per page
+  const itemsPerPage = 4; // Or however many items per page
 
   const [currentPage, setCurrentPage] = useState(1);
 
