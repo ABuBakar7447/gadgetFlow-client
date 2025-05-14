@@ -15,15 +15,15 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
 
-    const createUser = (email: string, password: string): Promise<void> => {
-        setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password).then(() => setLoading(false));
-    };
+    const createUser = async (email: string, password: string): Promise<any> => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+};
 
-    const signInUser = (email: string, password: string): Promise<void> => {
-        setLoading(true);
-        return signInWithEmailAndPassword(auth, email, password).then(() => setLoading(false));
-    };
+    const signInUser = async (email: string, password: string): Promise<any> => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+};
 
     // const updateUserProfile = (name: string): Promise<void> => {
     //     return updateProfile(auth.currentUser, { displayName: name });

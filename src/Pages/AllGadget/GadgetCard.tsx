@@ -11,8 +11,6 @@ interface IProps {
 }
 
 import {
-  
-  BadgeCheck,
   Monitor,
   Cpu,
   MemoryStick,
@@ -36,9 +34,9 @@ const GadgetCard = ({ gadget }: IProps) => {
   };
 
   return (
-    <div className="transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 duration-300 my-5">
+    <div className="">
       <div className="">
-        <div className="card w-full max-w-sm mx-auto bg-[#1C2431] rounded-xl shadow-lg shadow-[#00C2FF33]hover:shadow-[#00F0FF66] shadow-[#00C2FF33] hover:shadow-[#00F0FF66] transition duration-300 hover:scale-[1.02] text-white">
+        <div className="card w-full max-w-sm mx-auto bg-[#1C2431] rounded-2xl shadow-lg transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform text-white hover:scale-[1.03] py-4">
           <figure className="px-6 pt-6">
             <img
               src={img}
@@ -46,28 +44,28 @@ const GadgetCard = ({ gadget }: IProps) => {
               className="rounded-xl w-full h-[200px] object-cover shadow"
             />
           </figure>
-          <div className="card-body text-left space-y-3">
-            <h2 className="card-title text-lg font-semibold text-primary flex items-center gap-2">
-              <BadgeCheck className="w-5 h-5 text-green-500" />
-              {brand}
+          <div className="p-5 text-left space-y-3">
+            <h2 className="text-[17px] font-semibold text-primary text-center">
+              
+              {name} ||{brand}
             </h2>
-            <p className="font-medium">{name}</p>
+            
             <ul className="text-sm  space-y-1">
               <li className="flex items-center gap-2">
                 <Cpu className="w-4 h-4" />
-                {gadget.features.processor}
+                {gadget.features.processor} Processor
               </li>
               <li className="flex items-center gap-2">
                 <MemoryStick className="w-4 h-4" />
-                {gadget.features.RAM}
+                {gadget.features.RAM} DDR4 3200Mhz RAM
               </li>
               <li className="flex items-center gap-2">
                 <HardDrive className="w-4 h-4" />
-                {gadget.features.storageCapacity}
+                {gadget.features.storageCapacity} NVMe
               </li>
               <li className="flex items-center gap-2">
                 <Monitor className="w-4 h-4" />
-                {gadget.features.screenSize}
+                {gadget.features.screenSize} IPS Display with Full HD
               </li>
               <li className="flex items-center gap-2">
                 <CalendarDays className="w-4 h-4" />
@@ -81,33 +79,7 @@ const GadgetCard = ({ gadget }: IProps) => {
             </div>
           </div>
 
-          {/* <div className="flex justify-evenly w-full">
-            <Link to={`/details/${_id}`}>
-              <button className="hover:text-black">
-                <lord-icon
-                  src="https://cdn.lordicon.com/yxczfiyc.json"
-                  trigger="hover"
-                  color=""
-                  style={{ width: "25px", height: "25px" }}
-                ></lord-icon>
-              </button>
-            </Link>
-            <button className="icon" onClick={() => handleAdd(gadget)}>
-              <lord-icon
-                src="https://cdn.lordicon.com/mfmkufkr.json"
-                trigger="hover"
-                class="current-color"
-                style={{ width: "25px", height: "25px" }}
-              ></lord-icon>
-            </button>
-            <button className="">
-              <lord-icon
-                src="https://cdn.lordicon.com/xyboiuok.json"
-                trigger="hover"
-                style={{ width: "25px", height: "25px" }}
-              ></lord-icon>
-            </button>
-          </div> */}
+          
 
           <div className="flex justify-evenly w-full space-x-3">
             {/* Info Button */}

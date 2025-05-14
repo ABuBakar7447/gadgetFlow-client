@@ -36,12 +36,12 @@ const CustomerReview: React.FC<UserReviewProps> = ({ reviews }) => {
       }}
       navigation={true}
       modules={[Autoplay, Pagination, Navigation]}
-      className="mySwiper w-3/4"
+      className="mySwiper w-[90%]"
     >
       <div className="">
         {reviews.map((review, index) => (
           <SwiperSlide key={index}>
-            <div className="w-3/4 bg-[#101522] text-white rounded-xl flex flex-col items-center text-center mb-8 mx-auto">
+            <div className="w-[90%] bg-[#101522] text-white rounded-xl flex flex-col items-center text-center mb-8 mx-auto">
               <Rating
                 style={{ maxWidth: 180 }}
                 value={review.rating}

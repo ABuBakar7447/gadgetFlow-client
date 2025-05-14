@@ -32,20 +32,6 @@ const AllGadget = () => {
   let productsData = datas;
   // console.log(productsData);
 
-  if (isLoading) {
-    return (
-      <div className="w-1/2 min-h-screen mx-auto h-1/2 flex justify-center items-center">
-        <Flex align="center" gap="middle">
-          <Spin size="large" />
-        </Flex>
-      </div>
-    );
-  }
-
-
-  
-
-
   if (status) {
     if (status && priceRange > 0) {
       productsData = datas?.filter(
@@ -98,38 +84,84 @@ const AllGadget = () => {
 
   // console.log(filteredData);
 
+  const itemsPerPage = 4; // Or however many items per page
 
-  
-  
+  const [currentPage, setCurrentPage] = useState(1);
 
+  // Calculate total pages
+  const totalPages = Math.ceil(filteredData?.length / itemsPerPage);
+
+  // Get current page items
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredData?.slice(indexOfFirstItem, indexOfLastItem);
+
+  if (isLoading) {
+    return (
+      <div className="w-1/2 min-h-screen mx-auto h-1/2 flex justify-center items-center">
+        <Flex align="center" gap="middle">
+          <Spin size="large" />
+        </Flex>
+      </div>
+    );
+  }
 
   return (
-    <div className="w-[90%] mx-auto lg:pt-[84px]">
-
-        <div className="lg:col-span-9 col-span-12">
-            <div className="flex justify-center items-center my-8 px-5">
-                <div className="lg:w-3/4 w-1/2 mr-2">
-                    {/* // searchBar// */}
-                    <input
-                        type="text"
-                        placeholder="Type here to search product"
-                        className="input input-bordered input-primary w-full lg:w-1/2"
-                        value={searchQuery}
-                        onChange={e => setSearchQuery(e.target.value)}
-                    />
-                </div>
-                <Opendrawer></Opendrawer>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 place-items-center my-5 ">
-                {
-                    filteredData?.map((gadget: any) => <GadgetCard key={gadget._id} gadget={gadget}></GadgetCard>)
-                }
-            </div>
+    <div className="w-[90%] mx-auto lg:pt-[84px] py-8">
+      <div className="lg:col-span-9 col-span-12 bg-[#101522] p-8 rounded-lg my-5">
+        <div className="flex justify-center items-center my-8 px-5">
+          <div className="lg:w-3/4 w-1/2 mr-2">
+            {/* // searchBar// */}
+            <input
+              type="text"
+              placeholder="Type here to search product"
+              className="input input-bordered input-primary w-full lg:w-1/2"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+          <Opendrawer></Opendrawer>
         </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 place-items-center my-5 ">
+          {currentItems?.map((gadget: any) => (
+            <GadgetCard key={gadget._id} gadget={gadget}></GadgetCard>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex justify-center mt-6 space-x-2">
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+          className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50"
+        >
+          Previous
+        </button>
+
+        {[...Array(totalPages)].map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrentPage(idx + 1)}
+            className={`px-4 py-2 rounded ${
+              currentPage === idx + 1 ? "bg-blue-700 text-white" : "bg-gray-200"
+            }`}
+          >
+            {idx + 1}
+          </button>
+        ))}
+
+        <button
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+          }
+          disabled={currentPage === totalPages}
+          className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
     </div>
-    
   );
 };
 

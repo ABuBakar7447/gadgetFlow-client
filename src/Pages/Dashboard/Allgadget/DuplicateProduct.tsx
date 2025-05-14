@@ -1,5 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useGadgetDataAddMutation} from "../../../Redux/api";
+import Swal from "sweetalert2";
 
 interface IFormInput {
     id: number;
@@ -22,9 +23,7 @@ interface IFormInput {
     img: string;
 }
 
-// interface Iprops {
-//     dupliproitem: ILaptop;
-// }
+
 
 const DuplicateProduct = ({dupliproitem}:any) => {
 
@@ -81,7 +80,7 @@ const DuplicateProduct = ({dupliproitem}:any) => {
                             storageCapacity: data.features.storageCapacity,
                             screenSize: data.features.screenSize,
                         },
-                        img:imgURL,
+                        img:imgURL?imgURL:dupliproitem.img,
                         status:true,
                         addedquantity:parseInt('0')
                     }
@@ -89,6 +88,15 @@ const DuplicateProduct = ({dupliproitem}:any) => {
                     console.log(product);
                     
                     gadgetDataAdd({product})
+
+                    Swal.fire({
+                          position: "top-end",
+                          icon: "success",
+                          title: "Your Product Added, Now close the modal",
+                          showConfirmButton: false,
+                          timer: 1500,
+                        });
+                    
 
                 }
             })
@@ -100,10 +108,7 @@ const DuplicateProduct = ({dupliproitem}:any) => {
 
     return (
         <div>
-            {/* The button to open modal */}
-
-
-            {/* Put this part before </body> tag */}
+            
             <input type="checkbox" id="my_modal_7" className="modal-toggle" />
             <div className="modal" role="dialog">
                 <div className="modal-box">

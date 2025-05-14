@@ -23,7 +23,7 @@ const OurFacility = () => {
         }
     ]
     return (
-        <div className="w-3/4 mx-auto my-24 ">
+        <div className="w-[90%] mx-auto my-24 ">
             <SectionTitle text="Shop safely with GadgetFlow"></SectionTitle>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 rounded-xl bg-[#101522]">
                 {facility?.map(item =>

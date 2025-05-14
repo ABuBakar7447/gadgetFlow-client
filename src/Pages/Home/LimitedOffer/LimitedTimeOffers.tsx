@@ -90,8 +90,8 @@ const LimitedTimeOffers = () => {
             return (
               <div
                 key={index}
-                className="card w-full max-w-sm mx-auto bg-[#1C2431] rounded-xl shadow-lg shadow-[#00C2FF33]
-hover:shadow-[#00F0FF66] transition duration-300 hover:scale-[1.02] text-white"
+                className="card w-full max-w-sm mx-auto bg-[#1C2431] rounded-xl shadow-lg
+ transition duration-300 hover:scale-[1.02] text-white"
               >
                 <div className="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                   <BadgePercent className="w-4 h-4" />
@@ -103,10 +103,10 @@ hover:shadow-[#00F0FF66] transition duration-300 hover:scale-[1.02] text-white"
                   className="w-full mx-auto rounded-xl h-48 object-cover"
                 />
                 <div className="p-5 text-left space-y-2">
-                  <h3 className="text-lg font-semibold text-red-700">
+                  <h3 className=" font-bold text-primary">
                     {product.name}
                   </h3>
-                  <p className="text-sm text-gray-600">{product.brand}</p>
+                  <p className="text-sm">{product.brand}</p>
                   <div className="flex items-center gap-3 mt-1">
                     <span className="text-xl font-bold text-green-600">
                       ${discountedPrice}
@@ -115,7 +115,7 @@ hover:shadow-[#00F0FF66] transition duration-300 hover:scale-[1.02] text-white"
                       ${product.price.toFixed(2)}
                     </span>
                   </div>
-                  <button className="btn btn-primary btn-sm mt-3 flex items-center gap-2" onClick={() => handleAdd(product, discountedPrice)}>
+                  <button className="btn btn-outline btn-sm bg-[#00C2FF] hover:bg-[#00F0FF] text-[#0A0F1C] flex items-center gap-2 transition duration-300" onClick={() => handleAdd(product, discountedPrice)}>
                     <ShoppingCart className="w-4 h-4" />
                     Grab Deal
                   </button>
